@@ -17,10 +17,10 @@ const Header = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const handleClick = () => {
-    setIsOpen(!isOpen);
-  };
+  // const [isOpen, setIsOpen] = useState<boolean>(false);
+  // const handleClick = () => {
+  //   setIsOpen(!isOpen);
+  // };
   return (
     <div className="hidden md:flex items-center h-[40px] bg-[#213236] text-white text-[12px] uppercase">
       <nav className="w-[98%] mx-auto md:flex justify-between ">

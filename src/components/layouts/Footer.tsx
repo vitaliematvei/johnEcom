@@ -1,14 +1,8 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import MobileMenuAccordeonLenergie from "./Mobile-Menu-Accordeon-Lenergie";
 import FooterMenuAccordeonLenergie from "./Footer-Menu-Accordeon-Lenergie";
 import FooterMenuAccordeonLampe from "./Footer-Menu-Accordeon-Lampe";
-
-import { TailwindClasses } from "@/types";
-const tailwindClasses: TailwindClasses = [
-  "bg-[#223236] text-white cursor-pointer uppercase py-3 px-5 flex justify-between items-center",
-];
 
 import Car from "../../../public/assets/images/Footer/truck_1-footer.webp";
 import Lampe from "../../../public/assets/images/Footer/lamp-ecology-footer.webp";
