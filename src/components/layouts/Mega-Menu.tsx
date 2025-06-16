@@ -19,10 +19,10 @@ const MegaMenu = () => {
     dropdownName: "",
   });
   //--------------  logic for the search
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const handleSearchClick = () => {
-    setIsSearchOpen(!isSearchOpen);
-  };
+  // const [isSearchOpen, setIsSearchOpen] = useState(false);
+  // const handleSearchClick = () => {
+  //   setIsSearchOpen(!isSearchOpen);
+  // };
 
   const [searchTerm, setSearchTerm] = useState("");
   const handleChange = (event: {
