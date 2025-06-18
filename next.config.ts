@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
-        // port: "",
-        // pathname: "/images/jw5gv2jq/production/**",
+        port: "",
+        pathname: "/images/jw5gv2jq/production/**",
       },
     ],
   },
