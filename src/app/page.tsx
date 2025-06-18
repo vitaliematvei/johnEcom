@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
+import Image from "next/image";
+import { urlFor } from "@/sanity/client";
 
 import { client } from "@/sanity/client";
 
@@ -24,23 +26,30 @@ export default async function IndexPage() {
   );
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8">
-      <h1 className="text-4xl font-bold mb-8">Products</h1>
-      <ul className="flex flex-col gap-y-4">
+    <main className="mx-auto min-h-screen p-8">
+      <h1 className="text-4xl font-bold mb-8 text-center">Products</h1>
+      <ul className="flex flex-wrap gap-x-10 text-center items-center">
         {products.map((product) => (
-          <li className="hover:underline" key={product._id}>
+          <li
+            className=" -z-10 hover:underline mx-auto my-2 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out"
+            key={product._id}
+          >
             <Link href={`/product/${product.slug}`}>
-              <h2 className="text-xl font-semibold">{product.name}</h2>
+              {product.image && (
+                <div className="w-[358px] h-[210px] relative ">
+                  <Image
+                    // width={717}
+                    // height={421}
+                    src={urlFor(product.image).url()}
+                    alt={product.name}
+                    layout="fill"
+                    className=" rounded-lg"
+                  />
+                </div>
+              )}
+              <h2 className="mt-4 text-xl font-semibold">{product.name}</h2>
               <p>{product.description}</p>
               <p>Price: ${product.price}</p>
-              {product.image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="mt-2 max-h-32 object-contain"
-                />
-              )}
             </Link>
           </li>
         ))}
