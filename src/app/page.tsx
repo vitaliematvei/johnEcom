@@ -36,7 +36,7 @@ export default async function IndexPage() {
           >
             <Link href={`/product/${product.slug}`}>
               {product.image && (
-                <div className="w-[358px] h-[210px] relative ">
+                <div className="w-[180px] h-[105px] relative ">
                   <Image
                     // width={717}
                     // height={421}
