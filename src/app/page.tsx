@@ -2,7 +2,7 @@
 // import { type SanityDocument } from "next-sanity";
 // import Image from "next/image";
 // import { urlFor } from "@/sanity/client";
-import ProductDetails from "../components/layouts/ProductDetails";
+import ProductDetails from "../components/layouts/PopularProduct";
 
 // import { client } from "@/sanity/client";
 

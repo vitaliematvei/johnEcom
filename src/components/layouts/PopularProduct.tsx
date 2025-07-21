@@ -9,7 +9,7 @@ interface Product extends SanityDocument {
   description?: string;
   price?: number;
   slug: string;
-  oneImage: {
+  images: {
     _type: "image";
     asset: {
       _ref: string;
@@ -17,7 +17,7 @@ interface Product extends SanityDocument {
       // url: string; // url is not directly available on asset in Sanity, use urlFor
     };
     alt?: string;
-  };
+  }[];
 }
 
 const PRODUCTS_QUERY = groq`*[ _type == "product"]{
@@ -26,12 +26,12 @@ const PRODUCTS_QUERY = groq`*[ _type == "product"]{
   "slug": slug.current,
   description,
   price,
-  oneImage
+  images
 }`;
 
 const options = { next: { revalidate: 30 } };
 
-async function ProductDetails() {
+async function ProductProduct() {
   const products = await client.fetch<Product[]>(PRODUCTS_QUERY, {}, options);
 
   return (
@@ -42,11 +42,26 @@ async function ProductDetails() {
             key={product._id}
             className="product-card border rounded-lg shadow-md overflow-hidden"
           >
-            <div className="product-name p-4 bg-gray-50 border-b flex items-center justify-between">
+            {/* All images */}
+            {product.images && product.images.length > 0 && (
+              <div className="flex gap-2 p-4 border-b">
+                {product.images.map((image, index) => (
+                  <Image
+                    key={index}
+                    alt="Product Image"
+                    src={urlFor(image.asset).url()}
+                    width={80}
+                    height={80}
+                    style={{ objectFit: "cover", borderRadius: "4px" }}
+                  />
+                ))}
+              </div>
+            )}
+            <div className="p-4 bg-gray-50 border-b flex items-center justify-between">
               <h2 className="text-xl font-semibold text-gray-800 flex-grow">
                 {product.name}
               </h2>
-              {product.oneImage?.asset?._ref && (
+              {/* {product.oneImage?.asset?._ref && (
                 <div>
                   <Image
                     src={urlFor(product.oneImage.asset).url()}
@@ -56,7 +71,7 @@ async function ProductDetails() {
                     style={{ objectFit: "cover", borderRadius: "4px" }}
                   />
                 </div>
-              )}
+              )} */}
             </div>
 
             {product.description && (
@@ -92,4 +107,4 @@ async function ProductDetails() {
   );
 }
 
-export default ProductDetails;
+export default ProductProduct;
