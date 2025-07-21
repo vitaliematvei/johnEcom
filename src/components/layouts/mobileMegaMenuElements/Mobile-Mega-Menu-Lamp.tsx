@@ -3,23 +3,25 @@ import React from "react";
 import Link from "next/link";
 
 const menuItems = [
-  { href: "#", label: "Lampe extérieur" },
-  { href: "#", label: "Lampe solaire extérieur détecteur de mouvement" },
-  { href: "#", label: "Lampe solaire exterieure puissante" },
-  { href: "#", label: "Lampe intérieur" },
+  // { href: "#", label: "Lampe extérieur" },
+  // { href: "#", label: "Lampe solaire extérieur détecteur de mouvement" },
+  // { href: "#", label: "Lampe solaire exterieure puissante" },
+  // { href: "#", label: "Lampe intérieur" },
+  // { href: "#", label: "Lampe solaire jardin puissante" },
+  // { href: "#", label: "Lampe solaire camping" },
+  // { href: "#", label: "Lampe solaire puissante" },
+  // { href: "#", label: "Lampe solaire puissante jardin" },
+  // { href: "#", label: "Lampe solaire détecteur mouvement" },
+  // { href: "#", label: "Lampe solaire de table" },
+  // { href: "#", label: "Lampe solaire à poser" },
+  // { href: "#", label: "Lampe solaire murale" },
+  // { href: "#", label: "Lampe solaire jardin haut de gamme" },
+  // { href: "#", label: "Lampe solaire design" },
+  // { href: "#", label: "Lampe solaire metal" },
+
   { href: "#", label: "Lampe solaire jardin" },
   { href: "#", label: "Lampe solaire terrasse" },
-  { href: "#", label: "Lampe solaire jardin puissante" },
-  { href: "#", label: "Lampe solaire camping" },
-  { href: "#", label: "Lampe solaire puissante" },
-  { href: "#", label: "Lampe solaire puissante jardin" },
-  { href: "#", label: "Lampe solaire détecteur mouvement" },
-  { href: "#", label: "Lampe solaire de table" },
-  { href: "#", label: "Lampe solaire à poser" },
   { href: "#", label: "Lampe solaire murale" },
-  { href: "#", label: "Lampe solaire jardin haut de gamme" },
-  { href: "#", label: "Lampe solaire design" },
-  { href: "#", label: "Lampe solaire metal" },
 ];
 
 const MobileMegaMenuLamp = () => {

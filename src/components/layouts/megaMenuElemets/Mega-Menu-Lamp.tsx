@@ -39,7 +39,7 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
             </div>
           ))}
         </li> */}
-        <li className="flex flex-col gap-8 w-1/6">
+        <li className="flex flex-col gap-8 w-1/5">
           {[
             {
               label: "Lampe solaire jardin",
@@ -62,7 +62,7 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
           ))}
         </li>
 
-        <li className="flex flex-col gap-8 w-1/6">
+        <li className="flex flex-col gap-8 w-1/5">
           {[
             {
               label: "Lampe solaire terrasse",
@@ -85,7 +85,7 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
           ))}
         </li>
 
-        <li className="flex flex-col gap-8 w-1/6">
+        <li className="flex flex-col gap-8 w-1/5">
           {[
             {
               label: "Lampe solaire murale",
