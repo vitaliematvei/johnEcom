@@ -17,7 +17,7 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
       className="absolute left-0 top-25 border-t-1 py-8 w-[100%] h-fit px-4 text-white bg-[#37464A] opacity-95"
     >
       <ul className="flex justify-between">
-        <li className="flex flex-col gap-8 w-1/6">
+        {/* <li className="flex flex-col gap-8 w-1/6">
           {[
             {
               label: "Lampe extérieur",
@@ -38,20 +38,20 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
               <Link href={item.href}>{item.label}</Link>
             </div>
           ))}
-        </li>
-        <li className="flex flex-col gap-8 w-1/7">
+        </li> */}
+        <li className="flex flex-col gap-8 w-1/6">
           {[
             {
               label: "Lampe solaire jardin",
               href: "#",
               isHeader: true,
             },
-            {
-              label: "Lampe solaire terrasse",
-              href: "#",
-            },
-            { label: "Lampe solaire jardin puissante", href: "#" },
-            { label: "Lampe solaire camping", href: "#" },
+            // {
+            //   label: "Lampe solaire terrasse",
+            //   href: "#",
+            // },
+            // { label: "Lampe solaire jardin puissante", href: "#" },
+            // { label: "Lampe solaire camping", href: "#" },
           ].map((item) => (
             <div
               key={item.label}
@@ -62,7 +62,53 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
           ))}
         </li>
 
-        <li className="flex flex-col gap-8 w-1/7">
+        <li className="flex flex-col gap-8 w-1/6">
+          {[
+            {
+              label: "Lampe solaire terrasse",
+              href: "#",
+              isHeader: true,
+            },
+            // {
+            //   label: "Lampe solaire terrasse",
+            //   href: "#",
+            // },
+            // { label: "Lampe solaire jardin puissante", href: "#" },
+            // { label: "Lampe solaire camping", href: "#" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className={`hover:text-[#F49805] flex items-center text-white${item.isHeader ? " border-b-1 border-white" : ""}`}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </div>
+          ))}
+        </li>
+
+        <li className="flex flex-col gap-8 w-1/6">
+          {[
+            {
+              label: "Lampe solaire murale",
+              href: "#",
+              isHeader: true,
+            },
+            // {
+            //   label: "Lampe solaire terrasse",
+            //   href: "#",
+            // },
+            // { label: "Lampe solaire jardin puissante", href: "#" },
+            // { label: "Lampe solaire camping", href: "#" },
+          ].map((item) => (
+            <div
+              key={item.label}
+              className={`hover:text-[#F49805] flex items-center text-white${item.isHeader ? " border-b-1 border-white" : ""}`}
+            >
+              <Link href={item.href}>{item.label}</Link>
+            </div>
+          ))}
+        </li>
+
+        {/* <li className="flex flex-col gap-8 w-1/7">
           {[
             {
               label: "Lampe solaire puissante",
@@ -82,9 +128,9 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
               <Link href={item.href}>{item.label}</Link>
             </div>
           ))}
-        </li>
+        </li> */}
 
-        <li className="flex flex-col gap-8 w-1/7">
+        {/* <li className="flex flex-col gap-8 w-1/7">
           {[
             {
               label: "Lampe solaire de table",
@@ -104,9 +150,9 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
               <Link href={item.href}>{item.label}</Link>
             </div>
           ))}
-        </li>
+        </li> */}
 
-        <li className="flex flex-col gap-8 w-1/6">
+        {/* <li className="flex flex-col gap-8 w-1/6">
           {[
             {
               label: "Lampe solaire jardin haut de gamme",
@@ -126,7 +172,7 @@ const MegaMenuLamp = (props: MegaMenuLampProps) => {
               <Link href={item.href}>{item.label}</Link>
             </div>
           ))}
-        </li>
+        </li> */}
       </ul>
     </div>
   );
