@@ -3,7 +3,7 @@ import { client, urlFor } from "@/sanity/client";
 import { groq, type SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCartBtn from "./AddToCartBtn";
+import AddToCartBtn from "@/components/layouts/AddToCartBtn";
 
 interface Product extends SanityDocument {
   name: string;
@@ -32,9 +32,8 @@ const PRODUCTS_QUERY = groq`*[ _type == "product"]{
 
 const options = { next: { revalidate: 30 } };
 
-async function ProductProduct() {
+const ProductDetails = async () => {
   const products = await client.fetch<Product[]>(PRODUCTS_QUERY, {}, options);
-
   return (
     <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.length > 0 ? (
@@ -66,11 +65,11 @@ async function ProductProduct() {
                 ))} */}
               </div>
             )}
-            {/* <div className="p-4 bg-gray-50 border-b flex items-center justify-between"> */}
-            {/* <h2 className="text-xl font-semibold text-gray-800 flex-grow">
+            <div className="p-4 bg-gray-50 border-b flex items-center justify-between">
+              <h2 className="text-xl font-semibold text-gray-800 flex-grow">
                 {product.name}
-              </h2> */}
-            {/* {product.oneImage?.asset?._ref && (
+              </h2>
+              {/* {product.oneImage?.asset?._ref && (
                 <div>
                   <Image
                     src={urlFor(product.oneImage.asset).url()}
@@ -81,21 +80,21 @@ async function ProductProduct() {
                   />
                 </div>
               )} */}
-            {/* </div> */}
-            {/* 
+            </div>
+
             {product.description && (
               <div className="product-description p-4 text-gray-700">
                 <p>{product.description}</p>
               </div>
-            )} */}
+            )}
 
-            {/* {product.price !== undefined && (
+            {product.price !== undefined && (
               <div className="product-price p-4 border-t bg-gray-50">
                 <p className="text-lg font-bold text-gray-900">
                   Price: ${product.price.toFixed(2)}
                 </p>
               </div>
-            )} */}
+            )}
 
             <div className="p-4 border-t">
               <AddToCartBtn />
@@ -118,6 +117,6 @@ async function ProductProduct() {
       )}
     </div>
   );
-}
+};
 
-export default ProductProduct;
+export default ProductDetails;
