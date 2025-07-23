@@ -1,5 +1,5 @@
 import React from "react";
-import { client, urlFor } from "@/sanity/client";
+import { client } from "@/sanity/client";
 import { groq, type SanityDocument } from "next-sanity";
 import Image from "next/image";
 import AddToCartBtn from "@/components/layouts/AddToCartBtn"; // Assuming this path is correct
@@ -74,7 +74,6 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
                 className="mb-4 w-full relative"
                 style={{ paddingTop: "75%" }}
               >
-                {" "}
                 {/* Maintain aspect ratio with padding-top trick */}
                 <Image
                   src={product.images[0].asset.url} // Use the directly fetched URL
