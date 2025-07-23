@@ -24,7 +24,7 @@ const PRODUCT_QUERY = groq`
   *[_type == "product" && slug.current == $slug][0]{
     _id,
     name,
-    slug,
+    "slug": slug.current, // Get the string value of the slug
     description,
     price,
     images[]{
@@ -39,17 +39,17 @@ const PRODUCT_QUERY = groq`
   }
 `;
 
-interface ProductPageProps {
-  params: { slug: string };
-}
+// interface ProductPageProps {
+//   params: { slug: string };
+// }
 
-const ProductDetails = async ({ params }: ProductPageProps) => {
-  const { slug } = await params;
+const ProductDetails = async ({ params }: { params: { slug: string } }) => {
+  // const { slug } = await params;
 
   // Fetch a single product
   const product: Product | null = await client.fetch(
     PRODUCT_QUERY,
-    { slug },
+    { slug: params.slug },
     { next: { revalidate: 30 } }
   ); // Added revalidate
 
