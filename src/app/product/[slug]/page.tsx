@@ -8,7 +8,7 @@ interface Product extends SanityDocument {
   name: string;
   description?: string;
   price?: number;
-  slug: { current: string }; // Keep slug as object in interface as it's fetched that way
+  slug: { current: any }; // Keep slug as object in interface as it's fetched that way
   images?: {
     _type: "image";
     asset: {
