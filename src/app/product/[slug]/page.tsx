@@ -8,7 +8,7 @@ interface Product extends SanityDocument {
   name: string;
   description?: string;
   price?: number;
-  slug: string; // Keep slug as object in interface as it's fetched that way
+  slug: string; // The slug is a string (slug.current) from the query
   images?: {
     _type: "image";
     asset: {
@@ -39,19 +39,21 @@ const PRODUCT_QUERY = groq`
   }
 `;
 
-// interface ProductPageProps {
-//   params: { slug: string };
-// }
+interface ProductPageProps {
+  params: { slug: string };
+}
 
-const ProductDetails = async ({ params }: { params: { slug: string } }) => {
-  // const { slug } = await params;
+const ProductDetails = async ({ params }: ProductPageProps) => {
+  // Directly destructure slug from params, no need for React.use()
+  // const { slug } = params;
+  const slug = (await params).slug;
 
   // Fetch a single product
   const product: Product | null = await client.fetch(
     PRODUCT_QUERY,
-    { slug: params.slug },
-    { next: { revalidate: 30 } }
-  ); // Added revalidate
+    { slug },
+    { next: { revalidate: 30 } } // Added revalidate
+  );
 
   // Handle case where product is not found
   if (!product) {
@@ -90,12 +92,12 @@ const ProductDetails = async ({ params }: { params: { slug: string } }) => {
                 <div className="flex flex-wrap gap-3 justify-center mt-4">
                   {product.images.map((image, index) => (
                     <div
-                      key={index} // Use _key if available, otherwise index
+                      key={index} // Use image._key for a stable key
                       className="w-20 h-20 relative cursor-pointer border rounded-md overflow-hidden hover:opacity-80 transition-opacity"
                     >
                       <Image
                         src={image.asset.url} // Use the directly fetched URL
-                        alt={image.alt || `Thumbnail ${index + 1}`}
+                        alt={image.alt || `Thumbnail ${image._key}`}
                         fill
                         style={{ objectFit: "cover" }}
                         sizes="80px"
@@ -132,7 +134,8 @@ const ProductDetails = async ({ params }: { params: { slug: string } }) => {
           )}
 
           <div className="mt-auto pt-6 border-t border-gray-200">
-            {/* <AddToCartBtn product={product} />  */}
+            {/* Pass product to AddToCartBtn if it needs product data */}
+            {/* <AddToCartBtn product={product} /> */}
             <AddToCartBtn />
           </div>
         </div>
