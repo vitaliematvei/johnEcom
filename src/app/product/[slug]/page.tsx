@@ -8,7 +8,7 @@ import { PortableText } from "@portabletext/react"; // Import PortableText for r
 
 interface Product extends SanityDocument {
   name: string;
-  description?: any[]; // PortableText value is an array of blocks
+  description?: string; // PortableText value is an array of blocks
   price?: number;
   slug: { current: string };
   images?: {
