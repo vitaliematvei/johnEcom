@@ -40,7 +40,7 @@ const PRODUCT_QUERY = groq`
 `;
 
 interface ProductPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 const ProductDetails = async ({ params }: ProductPageProps) => {
