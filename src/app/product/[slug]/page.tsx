@@ -1,14 +1,13 @@
 // app/product/[slug]/page.tsx
 import React from "react";
-import { client, urlFor } from "@/sanity/client"; // Ensure urlFor is correctly exported from your client.ts
+import { client, urlFor } from "@/sanity/client";
 import { groq, type SanityDocument } from "next-sanity";
 import Image from "next/image";
-import AddToCartBtn from "@/components/layouts/AddToCartBtn"; // Assuming this component exists and is correctly implemented
-import { PortableText } from "@portabletext/react"; // Import PortableText for rich text descriptions
+import AddToCartBtn from "@/components/layouts/AddToCartBtn";
 
 interface Product extends SanityDocument {
   name: string;
-  description?: string; // PortableText value is an array of blocks
+  description?: string;
   price?: number;
   slug: { current: string };
   images?: {
@@ -21,7 +20,6 @@ interface Product extends SanityDocument {
   }[];
 }
 
-// Define the GROQ query to fetch a single product by its slug
 const PRODUCT_QUERY = groq`
   *[_type == "product" && slug.current == $slug][0]{
     _id,
@@ -30,9 +28,9 @@ const PRODUCT_QUERY = groq`
     description,
     price,
     images[]{
-      _key, // Important for React list keys if you map over images
+      _key,
       _type,
-      asset->{ // Get the asset details for the image
+      asset->{
         _id,
         url
       },
@@ -42,14 +40,16 @@ const PRODUCT_QUERY = groq`
 `;
 
 interface ProductPageProps {
+  // params is already an object containing your slug, not a Promise here.
+  // The error often indicates a misinterpretation or incorrect setup elsewhere.
   params: { slug: string };
 }
 
-// Next.js App Router automatically handles data fetching in server components
+// Ensure your component is marked 'async' as it performs data fetching
 const ProductDetails = async ({ params }: ProductPageProps) => {
   const { slug } = params;
 
-  // Fetch a single product, not an array of products
+  // Fetch a single product
   const product: Product | null = await client.fetch(PRODUCT_QUERY, { slug });
 
   // Handle case where product is not found
@@ -61,53 +61,6 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
     );
   }
 
-  // Define components for Portable Text rendering (optional, but good practice)
-  const components = {
-    block: {
-      normal: ({ children }: { children: React.ReactNode }) => (
-        <p className="mb-4">{children}</p>
-      ),
-      h1: ({ children }: { children: React.ReactNode }) => (
-        <h1 className="text-3xl font-bold my-4">{children}</h1>
-      ),
-      h2: ({ children }: { children: React.ReactNode }) => (
-        <h2 className="text-2xl font-semibold my-3">{children}</h2>
-      ),
-      // Add more custom renderers for other block types (h3, h4, blockquote, etc.)
-    },
-    list: {
-      bullet: ({ children }: { children: React.ReactNode }) => (
-        <ul className="list-disc ml-5 mb-2">{children}</ul>
-      ),
-      number: ({ children }: { children: React.ReactNode }) => (
-        <ol className="list-decimal ml-5 mb-2">{children}</ol>
-      ),
-    },
-    marks: {
-      // Add custom renderers for marks (bold, italic, link, etc.)
-      link: ({
-        children,
-        value,
-      }: {
-        children: React.ReactNode;
-        value: any;
-      }) => {
-        const rel = !value.href.startsWith("/")
-          ? "noreferrer noopener"
-          : undefined;
-        return (
-          <a
-            href={value.href}
-            rel={rel}
-            className="text-blue-600 hover:underline"
-          >
-            {children}
-          </a>
-        );
-      },
-    },
-  };
-
   return (
     <div className="container mx-auto p-8 max-w-6xl">
       <div className="flex flex-col md:flex-row gap-10 bg-white rounded-lg shadow-xl p-6">
@@ -118,13 +71,13 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
               {/* Main Image */}
               <div className="mb-4 w-full">
                 <Image
-                  src={urlFor(product.images[0]).width(800).url() || ""} // Display the first image as main
+                  src={urlFor(product.images[0]).width(800).url() || ""}
                   alt={product.images[0].alt || product.name || "Product image"}
                   width={800}
                   height={600}
-                  priority // Load eagerly
+                  priority
                   className="w-full h-auto object-contain rounded-lg shadow-md"
-                  style={{ maxHeight: "600px" }} // Constrain height for large images
+                  style={{ maxHeight: "600px" }}
                 />
               </div>
               {/* Thumbnail Gallery (if more than one image) */}
@@ -132,13 +85,13 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
                 <div className="flex flex-wrap gap-3 justify-center mt-4">
                   {product.images.map((image, index) => (
                     <div
-                      key={image._key || index}
+                      key={index}
                       className="w-20 h-20 relative cursor-pointer border rounded-md overflow-hidden hover:opacity-80 transition-opacity"
                     >
                       <Image
                         src={urlFor(image).width(80).height(80).url() || ""}
                         alt={image.alt || `Thumbnail ${index + 1}`}
-                        fill // Fill the parent div
+                        fill
                         style={{ objectFit: "cover" }}
                         sizes="(max-width: 768px) 100vw, 80px"
                         className="rounded-md"
@@ -164,16 +117,12 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
           )}
 
           {product.description && (
-            <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed mb-8">
-              <PortableText
-                value={product.description}
-                // components={components}
-              />
+            <div className="text-gray-700 leading-relaxed mb-8">
+              <p>{product.description}</p>
             </div>
           )}
 
           <div className="mt-auto pt-6 border-t border-gray-200">
-            {/* Assuming AddToCartBtn takes product details as props */}
             {/* <AddToCartBtn product={product} /> */}
             <AddToCartBtn />
           </div>
