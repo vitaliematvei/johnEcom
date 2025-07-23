@@ -3,37 +3,52 @@ import { client, urlFor } from "@/sanity/client";
 import { groq, type SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
-import AddToCartBtn from "./AddToCartBtn";
+import AddToCartBtn from "./AddToCartBtn"; // Assuming AddToCartBtn is in the same directory
 
 interface Product extends SanityDocument {
   name: string;
   description?: string;
   price?: number;
-  slug: string;
-  images: {
+  slug: string; // The slug will be a string (slug.current) from the query
+  images?: {
     _type: "image";
     asset: {
       _ref: string;
       _type: "reference";
-      // url: string; // url is not directly available on asset in Sanity, use urlFor
     };
     alt?: string;
   }[];
 }
 
-const PRODUCTS_QUERY = groq`*[ _type == "product"]{
-  _id,
-  name,
-  "slug": slug.current,
-  description,
-  price,
-  images
-}`;
+const PRODUCTS_QUERY = groq`
+  *[ _type == "product"]{
+    _id,
+    name,
+    "slug": slug.current, // Get the string value of the slug
+    description,
+    price,
+    images[]{
+      _key,
+      _type,
+      asset->{
+        _id,
+        url
+      },
+      alt
+    }
+  }
+`;
 
-const options = { next: { revalidate: 30 } };
+// It's generally good practice to define revalidate options at the fetch level
+// or use Next.js's built-in revalidate functionality for async components directly.
+// const options = { next: { revalidate: 30 } }; // This is typically for fetch API calls or within `fetch` options.
 
-async function ProductProduct() {
-  const products = await client.fetch<Product[]>(PRODUCTS_QUERY, {}, options);
+async function ProductList() {
+  const products = await client.fetch<Product[]>(
+    PRODUCTS_QUERY,
+    {},
+    { next: { revalidate: 30 } }
+  ); // Applied revalidate option here
 
   return (
     <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -41,73 +56,56 @@ async function ProductProduct() {
         products.map((product) => (
           <div
             key={product._id}
-            className="product-card border rounded-lg shadow-md overflow-hidden"
+            className="product-card border rounded-lg shadow-md overflow-hidden flex flex-col"
           >
-            {/* The main image */}
+            {/* Product Image */}
             {product.images && product.images.length > 0 && (
-              <div className="flex justify-center gap-2 p-4 border-b">
+              <div className="relative w-full h-48">
+                {" "}
+                {/* Fixed height for images */}
                 <Image
-                  alt="Product Image"
-                  src={urlFor(product.images[0]).url()}
-                  width={80}
-                  height={80}
-                  style={{ objectFit: "cover", borderRadius: "4px" }}
+                  alt={product.images[0].alt || product.name || "Product Image"}
+                  src={
+                    urlFor(product.images[0]).url() || "/placeholder-image.jpg"
+                  } // Fallback for src
+                  fill // Use fill for better responsive image handling
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ objectFit: "cover" }}
+                  className="rounded-t-lg"
                 />
-
-                {/* {product.images.map((image, index) => (
-                  <Image
-                    key={index}
-                    alt="Product Image"
-                    src={urlFor(image.asset).url()}
-                    width={80}
-                    height={80}
-                    style={{ objectFit: "cover", borderRadius: "4px" }}
-                  />
-                ))} */}
               </div>
             )}
-            {/* <div className="p-4 bg-gray-50 border-b flex items-center justify-between"> */}
-            {/* <h2 className="text-xl font-semibold text-gray-800 flex-grow">
-                {product.name}
-              </h2> */}
-            {/* {product.oneImage?.asset?._ref && (
-                <div>
-                  <Image
-                    src={urlFor(product.oneImage.asset).url()}
-                    alt={product.oneImage.alt || product.name}
-                    width={60}
-                    height={60}
-                    style={{ objectFit: "cover", borderRadius: "4px" }}
-                  />
-                </div>
-              )} */}
-            {/* </div> */}
-            {/* 
-            {product.description && (
-              <div className="product-description p-4 text-gray-700">
-                <p>{product.description}</p>
-              </div>
-            )} */}
 
-            {product.price !== undefined && (
-              <div className="product-price p-4 border-t bg-gray-50">
-                <p className="text-lg font-bold text-gray-900">
+            <div className="p-4 flex-grow flex flex-col justify-between">
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                {product.name}
+              </h2>
+
+              {product.description && (
+                <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                  {" "}
+                  {/* Limit description lines */}
+                  {product.description}
+                </p>
+              )}
+
+              {product.price !== undefined && (
+                <p className="text-lg font-bold text-gray-900 mb-4">
                   Price: ${product.price.toFixed(2)}
                 </p>
+              )}
+
+              <div className="flex items-center justify-between mt-auto">
+                {/* <AddToCartBtn product={product} /> */}
+                <AddToCartBtn />
+                {/* Pass product to AddToCartBtn if it needs product data */}
+                <Link
+                  href={`/product/${product.slug}`}
+                  className="text-blue-600 hover:underline px-4 py-2 rounded-md border border-blue-600 hover:bg-blue-50 transition-colors"
+                >
+                  Details
+                </Link>
               </div>
-            )}
-
-            <div className="p-4 border-t">
-              <AddToCartBtn />
-            </div>
-
-            <div className="p-4 border-t">
-              <Link
-                href={`/product/${product.slug}`}
-                className="text-blue-600 hover:underline"
-              >
-                Details
-              </Link>
             </div>
           </div>
         ))
@@ -120,4 +118,4 @@ async function ProductProduct() {
   );
 }
 
-export default ProductProduct;
+export default ProductList;
