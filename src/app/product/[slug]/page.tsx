@@ -97,7 +97,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
                     >
                       <Image
                         src={image.asset.url} // Use the directly fetched URL
-                        alt={image.alt || `Thumbnail ${image._key}`}
+                        alt={image.alt || `Thumbnail ${index + 1}`}
                         fill
                         style={{ objectFit: "cover" }}
                         sizes="80px"
