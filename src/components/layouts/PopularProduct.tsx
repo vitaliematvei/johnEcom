@@ -89,13 +89,13 @@ async function ProductProduct() {
               </div>
             )} */}
 
-            {/* {product.price !== undefined && (
+            {product.price !== undefined && (
               <div className="product-price p-4 border-t bg-gray-50">
                 <p className="text-lg font-bold text-gray-900">
                   Price: ${product.price.toFixed(2)}
                 </p>
               </div>
-            )} */}
+            )}
 
             <div className="p-4 border-t">
               <AddToCartBtn />
