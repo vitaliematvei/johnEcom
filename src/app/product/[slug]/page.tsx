@@ -1,20 +1,20 @@
 import React from "react";
 import { client } from "@/sanity/client";
 import { groq, type SanityDocument } from "next-sanity";
-import Image from "next/image";
 import AddToCartBtn from "@/components/layouts/AddToCartBtn"; // Assuming this path is correct
+import ImageGallery from "./ImageGallery";
 
 interface Product extends SanityDocument {
   name: string;
   description?: string;
   price?: number;
-  slug: string; // The slug is a string (slug.current) from the query
+  slug: string;
   images?: {
     _type: "image";
     asset: {
       _ref: string;
       _type: "reference";
-      url: string; // url is available directly if fetched via asset->url
+      url: string;
     };
     alt?: string;
   }[];
@@ -24,7 +24,7 @@ const PRODUCT_QUERY = groq`
   *[_type == "product" && slug.current == $slug][0]{
     _id,
     name,
-    "slug": slug.current, // Get the string value of the slug
+    "slug": slug.current,
     description,
     price,
     images[]{
@@ -32,7 +32,7 @@ const PRODUCT_QUERY = groq`
       _type,
       asset->{
         _id,
-        url // Fetch the URL directly
+        url
       },
       alt
     }
@@ -44,18 +44,14 @@ interface ProductPageProps {
 }
 
 const ProductDetails = async ({ params }: ProductPageProps) => {
-  // Directly destructure slug from params, no need for React.use()
-  // const { slug } = params;
   const slug = (await params).slug;
 
-  // Fetch a single product
   const product: Product | null = await client.fetch(
     PRODUCT_QUERY,
     { slug },
-    { next: { revalidate: 30 } } // Added revalidate
+    { next: { revalidate: 30 } }
   );
 
-  // Handle case where product is not found
   if (!product) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -67,53 +63,18 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
   return (
     <div className="container mx-auto p-8 max-w-6xl">
       <div className="flex flex-col md:flex-row gap-10 bg-white rounded-lg shadow-xl p-6">
-        {/* Product Images Section */}
-        <div className="md:w-1/2 flex flex-col items-center">
-          {product.images && product.images.length > 0 ? (
-            <>
-              {/* Main Image */}
-              <div
-                className="mb-4 w-full relative"
-                style={{ paddingTop: "75%" }}
-              >
-                {/* Maintain aspect ratio with padding-top trick */}
-                <Image
-                  src={product.images[0].asset.url} // Use the directly fetched URL
-                  alt={product.images[0].alt || product.name || "Product image"}
-                  fill // Use fill for responsive image
-                  priority
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={{ objectFit: "contain" }}
-                  className="rounded-lg shadow-md"
-                />
-              </div>
-              {/* Thumbnail Gallery (if more than one image) */}
-              {product.images.length > 1 && (
-                <div className="flex flex-wrap gap-3 justify-center mt-4">
-                  {product.images.map((image, index) => (
-                    <div
-                      key={index} // Use image._key for a stable key
-                      className="w-20 h-20 relative cursor-pointer border rounded-md overflow-hidden hover:opacity-80 transition-opacity"
-                    >
-                      <Image
-                        src={image.asset.url} // Use the directly fetched URL
-                        alt={image.alt || `Thumbnail ${index + 1}`}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="80px"
-                        className="rounded-md"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </>
-          ) : (
-            <div className="w-full h-96 flex items-center justify-center bg-gray-200 rounded-lg">
-              <p className="text-gray-500">No image available</p>
-            </div>
-          )}
-        </div>
+        {/* Product Images Section - Now handled by ImageGallery */}
+        {product.images && product.images.length > 0 ? (
+          <ImageGallery
+            key={product.name.toString()}
+            images={product.images}
+            productName={product.name}
+          />
+        ) : (
+          <div className="md:w-1/2 w-full h-96 flex items-center justify-center bg-gray-200 rounded-lg">
+            <p className="text-gray-500">No image available</p>
+          </div>
+        )}
 
         {/* Product Details Section */}
         <div className="md:w-1/2 flex flex-col">
@@ -134,8 +95,6 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
           )}
 
           <div className="mt-auto pt-6 border-t border-gray-200">
-            {/* Pass product to AddToCartBtn if it needs product data */}
-            {/* <AddToCartBtn product={product} /> */}
             <AddToCartBtn />
           </div>
         </div>
