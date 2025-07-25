@@ -98,6 +98,7 @@ async function ProductList() {
               <div className="flex items-center justify-between mt-auto">
                 {/* <AddToCartBtn product={product} /> */}
                 <AddToCartBtn
+                  id={product._id}
                   name={product.name}
                   description={product.description}
                   images={product.images}

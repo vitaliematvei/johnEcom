@@ -2,7 +2,23 @@
 import React from "react";
 import { useShoppingCart } from "use-shopping-cart";
 
-const AddToCartBtn = ({ id, currency, name, description, images, price }) => {
+type AddToCartBtnProps = {
+  id: string;
+  currency: string;
+  name: string;
+  description: string;
+  images: { asset: { url: string } }[];
+  price: number;
+};
+
+const AddToCartBtn = ({
+  id,
+  currency,
+  name,
+  description,
+  images,
+  price,
+}: AddToCartBtnProps) => {
   const { addItem } = useShoppingCart();
   const product = {
     id: id,
