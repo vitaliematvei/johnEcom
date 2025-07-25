@@ -21,7 +21,7 @@ interface Product extends SanityDocument {
 }
 
 const PRODUCT_QUERY = groq`
-  *[_type == "product" && slug.current == $slug][0]{
+  *[_type == "product" && slug.current == $slug][0]  {
     _id,
     name,
     "slug": slug.current,

@@ -97,7 +97,14 @@ async function ProductList() {
 
               <div className="flex items-center justify-between mt-auto">
                 {/* <AddToCartBtn product={product} /> */}
-                <AddToCartBtn />
+                <AddToCartBtn
+                  name={product.name}
+                  description={product.description}
+                  images={product.images}
+                  price={product.price}
+                  currency="CAD" // Assuming USD, adjust as necessary
+                  // slug={product.slug}
+                />
                 {/* Pass product to AddToCartBtn if it needs product data */}
                 <Link
                   href={`/product/${product.slug}`}

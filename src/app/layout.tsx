@@ -7,6 +7,7 @@ import HeaderMobile from "@/components/layouts/Header-Mobile";
 
 import MegaMenu from "@/components/layouts/Mega-Menu";
 import Footer from "@/components/layouts/Footer";
+import CartProvider from "@/components/ui/Button/CartProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,11 +34,13 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <Header />
-        <HeaderMobile />
-        <MegaMenu />
-        {children}
-        <Footer />
+        <CartProvider>
+          <Header />
+          <HeaderMobile />
+          <MegaMenu />
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );
