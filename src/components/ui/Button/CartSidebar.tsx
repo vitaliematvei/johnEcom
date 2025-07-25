@@ -16,7 +16,7 @@ const CartSidebar = () => {
     cartDetails,
     shouldDisplayCart,
     handleCartClick,
-    totalPrice,
+    // totalPrice,
   } = useShoppingCart();
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>

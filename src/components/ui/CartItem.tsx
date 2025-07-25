@@ -1,4 +1,4 @@
-import { urlFor } from "@/sanity/client";
+// import { urlFor } from "@/sanity/client";
 
 import Image from "next/image";
 import { useShoppingCart } from "use-shopping-cart";
