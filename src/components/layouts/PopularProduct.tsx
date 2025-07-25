@@ -100,9 +100,19 @@ async function ProductList() {
                 <AddToCartBtn
                   id={product._id}
                   name={product.name}
-                  description={product.description}
-                  images={product.images}
-                  price={product.price}
+                  description={product.description || ""}
+                  images={
+                    product.images
+                      ? (product.images
+                          .map((img) =>
+                            img && (img as any).asset && (img as any).asset.url
+                              ? { asset: { url: (img as any).asset.url } }
+                              : null
+                          )
+                          .filter(Boolean) as { asset: { url: string } }[])
+                      : []
+                  }
+                  price={product.price ?? 0}
                   currency="CAD" // Assuming USD, adjust as necessary
                   // slug={product.slug}
                 />
