@@ -95,7 +95,20 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
           )}
 
           <div className="mt-auto pt-6 border-t border-gray-200">
-            <AddToCartBtn />
+            <AddToCartBtn
+              id={product._id}
+              currency="USD"
+              name={product.name}
+              description={product.description ?? ""}
+              price={product.price ?? 0}
+              images={
+                product.images && product.images.length > 0
+                  ? product.images.map((img) => ({
+                      asset: { url: img.asset.url },
+                    }))
+                  : []
+              }
+            />
           </div>
         </div>
       </div>
