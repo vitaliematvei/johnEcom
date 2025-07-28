@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
-interface ImageAsset {
-  url: string;
-}
+// interface ImageAsset {
+//   url: string;
+// }
 
 // Define the interface for an individual image object
 // interface ProductImage {
@@ -50,16 +50,12 @@ const PRODUCTS_QUERY = groq`
   }
 `;
 
-// It's generally good practice to define revalidate options at the fetch level
-// or use Next.js's built-in revalidate functionality for async components directly.
-// const options = { next: { revalidate: 30 } }; // This is typically for fetch API calls or within `fetch` options.
-
 async function ProductList() {
   const products = await client.fetch<Product[]>(
     PRODUCTS_QUERY,
     {},
     { next: { revalidate: 30 } }
-  ); // Applied revalidate option here
+  );
 
   return (
     <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
@@ -78,8 +74,8 @@ async function ProductList() {
                   alt={product.images[0].alt || product.name || 'Product Image'}
                   src={
                     urlFor(product.images[0]).url() || '/placeholder-image.jpg'
-                  } // Fallback for src
-                  fill // Use fill for better responsive image handling
+                  }
+                  fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ objectFit: 'cover' }}
                   className="rounded-t-lg"
