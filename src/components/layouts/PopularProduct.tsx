@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
-// interface ImageAsset {
-//   url: string;
-// }
+interface ImageAsset {
+  url: string;
+}
 
 // Define the interface for an individual image object
 // interface ProductImage {
@@ -26,6 +26,7 @@ interface Product extends SanityDocument {
     asset: {
       _ref: string;
       _type: 'reference';
+      url: string; // URL of the image asset
     };
     alt?: string;
   }[];
@@ -112,8 +113,8 @@ async function ProductList() {
                     product.images
                       ? (product.images
                           .map((img) =>
-                            img && (img as any).asset && (img as any).asset.url
-                              ? { asset: { url: (img as any).asset.url } }
+                            img && img.asset.url
+                              ? { asset: { url: img.asset.url } }
                               : null
                           )
                           .filter(Boolean) as { asset: { url: string } }[])
