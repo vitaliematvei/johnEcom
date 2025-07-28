@@ -1,6 +1,6 @@
-"use client";
-import React from "react";
-import { useShoppingCart } from "use-shopping-cart";
+'use client';
+import React, { useState } from 'react';
+import { useShoppingCart } from 'use-shopping-cart';
 
 type AddToCartBtnProps = {
   id: string;
@@ -25,16 +25,25 @@ const AddToCartBtn = ({
     name: name,
     description: description,
     images: images?.map((img) => img.asset.url) || [],
-    price: price * 100, // Convert to cents if using Stripe
+    price: price * 100,
     currency: currency,
   };
 
+  // State to manage if the item has been added to the cart
+  const [addedToCart, setAddedToCart] = useState(false);
+  const handleClick = () => {
+    addItem(product);
+    setAddedToCart(true); // Set state to true after item is added
+  };
+  // Determine the background color based on the state
+  const buttonColorClass = addedToCart ? 'bg-green-600' : 'bg-blue-600';
   return (
     <button
-      className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-      onClick={() => addItem(product)}
+      className={`${buttonColorClass} text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition-all duration-200`}
+      onClick={handleClick}
+      disabled={addedToCart} // Optionally disable the button after adding
     >
-      Add to Cart
+      {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
     </button>
   );
 };

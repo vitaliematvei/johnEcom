@@ -91,7 +91,6 @@ async function ProductList() {
 
               {product.description && (
                 <p className="text-gray-700 text-sm mb-4 line-clamp-3">
-                  {' '}
                   {/* Limit description lines */}
                   {product.description}
                 </p>
@@ -121,10 +120,9 @@ async function ProductList() {
                       : []
                   }
                   price={product.price ?? 0}
-                  currency="CAD" // Assuming USD, adjust as necessary
-                  // slug={product.slug}
+                  currency="CAD"
                 />
-                {/* Pass product to AddToCartBtn if it needs product data */}
+
                 <Link
                   href={`/product/${product.slug}`}
                   className="text-blue-600 hover:underline px-4 py-2 rounded-md border border-blue-600 hover:bg-blue-50 transition-colors"
