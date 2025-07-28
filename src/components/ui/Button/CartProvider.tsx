@@ -2,7 +2,9 @@
 
 import { CartProvider as CProvider } from "use-shopping-cart";
 
-const CartProvider = ({ children }) => {
+import { ReactNode } from "react";
+
+const CartProvider = ({ children }: { children: ReactNode }) => {
   return (
     <CProvider
       mode="payment"
@@ -14,7 +16,7 @@ const CartProvider = ({ children }) => {
       //   allowedCountries={["US"]}
       billingAddressCollection={true}
       shouldPersist={true}
-      cartUpdateBehavior="update"
+      //   cartUpdateBehavior="update"
     >
       {children}
     </CProvider>

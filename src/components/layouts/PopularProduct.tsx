@@ -1,20 +1,34 @@
-import React from "react";
-import { client, urlFor } from "@/sanity/client";
-import { groq, type SanityDocument } from "next-sanity";
-import Image from "next/image";
-import Link from "next/link";
-import AddToCartBtn from "./AddToCartBtn"; // Assuming AddToCartBtn is in the same directory
+import React from 'react';
+import { client, urlFor } from '@/sanity/client';
+import { groq, type SanityDocument } from 'next-sanity';
+import Image from 'next/image';
+import Link from 'next/link';
+import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
+
+// Define the interface for your image asset
+interface ImageAsset {
+  url: string;
+  // Add other properties if they exist, e.g., _ref, _type
+}
+
+// Define the interface for an individual image object
+interface ProductImage {
+  _key: string; // Assuming there's a key
+  _type: string; // Assuming there's a type
+  asset: ImageAsset;
+  // Add other properties that might exist on the image object
+}
 
 interface Product extends SanityDocument {
   name: string;
   description?: string;
-  price?: number;
+  price: number;
   slug: string; // The slug will be a string (slug.current) from the query
   images?: {
-    _type: "image";
+    _type: 'image';
     asset: {
       _ref: string;
-      _type: "reference";
+      _type: 'reference';
     };
     alt?: string;
   }[];
@@ -61,16 +75,16 @@ async function ProductList() {
             {/* Product Image */}
             {product.images && product.images.length > 0 && (
               <div className="relative w-full h-48">
-                {" "}
+                {' '}
                 {/* Fixed height for images */}
                 <Image
-                  alt={product.images[0].alt || product.name || "Product Image"}
+                  alt={product.images[0].alt || product.name || 'Product Image'}
                   src={
-                    urlFor(product.images[0]).url() || "/placeholder-image.jpg"
+                    urlFor(product.images[0]).url() || '/placeholder-image.jpg'
                   } // Fallback for src
                   fill // Use fill for better responsive image handling
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: 'cover' }}
                   className="rounded-t-lg"
                 />
               </div>
@@ -83,7 +97,7 @@ async function ProductList() {
 
               {product.description && (
                 <p className="text-gray-700 text-sm mb-4 line-clamp-3">
-                  {" "}
+                  {' '}
                   {/* Limit description lines */}
                   {product.description}
                 </p>
@@ -100,7 +114,7 @@ async function ProductList() {
                 <AddToCartBtn
                   id={product._id}
                   name={product.name}
-                  description={product.description || ""}
+                  description={product.description || ''}
                   images={
                     product.images
                       ? (product.images
