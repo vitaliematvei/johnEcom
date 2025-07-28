@@ -21,7 +21,7 @@ interface ProductImage {
 
 interface Product extends SanityDocument {
   name: string;
-  description?: string;
+  description: string;
   price: number;
   slug: string; // The slug will be a string (slug.current) from the query
   images?: {
