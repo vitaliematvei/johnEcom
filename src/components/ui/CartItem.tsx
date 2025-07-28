@@ -1,10 +1,20 @@
 // import { urlFor } from "@/sanity/client";
 
-import Image from "next/image";
-import { useShoppingCart } from "use-shopping-cart";
-import { FaPlus, FaMinus, FaX } from "react-icons/fa6";
+import Image from 'next/image';
+import { useShoppingCart } from 'use-shopping-cart';
+import { FaPlus, FaMinus, FaX } from 'react-icons/fa6';
 
-const CartItem = ({ item }) => {
+type CartItemProps = {
+  item: {
+    id: string;
+    name: string;
+    images: string[];
+    price: number;
+    quantity: number;
+  };
+};
+
+const CartItem = ({ item }: CartItemProps) => {
   const { removeItem, incrementItem, decrementItem } = useShoppingCart();
   return (
     <div className="flex w-full justify-between pl-4 mb-4 items-center h-[120px] border-b ">

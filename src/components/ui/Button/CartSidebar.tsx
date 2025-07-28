@@ -1,14 +1,14 @@
-"use client";
+'use client';
 
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
-} from "@/components/ui/sheet";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
-import { useShoppingCart } from "use-shopping-cart";
-import CartItem from "../CartItem"; // Adjust the import path as necessary
+} from '@/components/ui/sheet';
+import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { useShoppingCart } from 'use-shopping-cart';
+import CartItem from '../CartItem'; // Adjust the import path as necessary
 
 const CartSidebar = () => {
   const {
@@ -33,7 +33,15 @@ const CartSidebar = () => {
             <ScrollArea className="h-[70vh] xl:h-[74vh] pr-4 mb-4">
               {cartDetails &&
                 Object.entries(cartDetails).map(([key, item]) => {
-                  return <CartItem key={key} item={item} />;
+                  return (
+                    <CartItem
+                      key={key}
+                      item={{
+                        ...item,
+                        images: item.images ?? [],
+                      }}
+                    />
+                  );
                 })}
             </ScrollArea>
           )}
