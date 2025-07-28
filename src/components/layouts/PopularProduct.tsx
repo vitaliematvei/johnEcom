@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
-interface ImageAsset {
-  url: string;
-}
+// interface ImageAsset {
+//   url: string;
+// }
 
 // Define the interface for an individual image object
 // interface ProductImage {
