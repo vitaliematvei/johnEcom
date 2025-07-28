@@ -5,19 +5,16 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
-// Define the interface for your image asset
 interface ImageAsset {
   url: string;
-  // Add other properties if they exist, e.g., _ref, _type
 }
 
 // Define the interface for an individual image object
-interface ProductImage {
-  _key: string; // Assuming there's a key
-  _type: string; // Assuming there's a type
-  asset: ImageAsset;
-  // Add other properties that might exist on the image object
-}
+// interface ProductImage {
+//   _key: string;
+//   _type: string;
+//   asset: ImageAsset;
+// }
 
 interface Product extends SanityDocument {
   name: string;
