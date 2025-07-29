@@ -5,7 +5,6 @@ import Image from 'next/image';
 
 import { TailwindClasses } from '@/types';
 
-import CartSidebar from '../ui/Button/CartSidebar';
 import { useShoppingCart } from 'use-shopping-cart';
 
 import Logo from '../../../public/assets/images/Logo.avif';
