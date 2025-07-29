@@ -1,31 +1,36 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { TailwindClasses } from "@/types";
+import { TailwindClasses } from '@/types';
 
-import Logo from "../../../public/assets/images/Logo.avif";
-import MobileTopMenu from "./Mobile-Top-Menu";
-import MobileMegaMenu from "./Mobile-Mega-Menu";
-import MobileMenuConnextion from "./Mobile-Menu-Connextion";
-import MobileMenuAccordeonLampesolar from "./Mobile-Menu-Accordeon-Lampesolar";
-import MobileMenuAccordeonLenergie from "./Mobile-Menu-Accordeon-Lenergie";
+import CartSidebar from '../ui/Button/CartSidebar';
+import { useShoppingCart } from 'use-shopping-cart';
 
-import { FaTwitter } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { AiOutlineMail } from "react-icons/ai";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { IoIosMenu } from "react-icons/io";
-import { IoMdClose } from "react-icons/io";
-import { FaSearch } from "react-icons/fa";
+import Logo from '../../../public/assets/images/Logo.avif';
+import MobileTopMenu from './Mobile-Top-Menu';
+import MobileMegaMenu from './Mobile-Mega-Menu';
+import MobileMenuConnextion from './Mobile-Menu-Connextion';
+import MobileMenuAccordeonLampesolar from './Mobile-Menu-Accordeon-Lampesolar';
+import MobileMenuAccordeonLenergie from './Mobile-Menu-Accordeon-Lenergie';
+
+import { FaTwitter } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { AiOutlineMail } from 'react-icons/ai';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { IoIosMenu } from 'react-icons/io';
+import { IoMdClose } from 'react-icons/io';
+import { FaSearch } from 'react-icons/fa';
 
 const tailwindClasses: TailwindClasses = [
-  "bg-white cursor-pointer uppercase py-3 px-5 flex justify-between items-center",
+  'bg-white cursor-pointer uppercase py-3 px-5 flex justify-between items-center',
 ];
 
 const HeaderMobile = () => {
+  const { cartCount, handleCartClick } = useShoppingCart();
+
   //--------------  logic for the card modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleMouseEnterLeave = () => {
@@ -44,7 +49,7 @@ const HeaderMobile = () => {
     setIsSearchOpen(!isSearchOpen);
   };
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -52,7 +57,7 @@ const HeaderMobile = () => {
   };
   const handleSearch = () => {
     // Here you would implement your search logic
-    console.log("Searching for:", searchTerm);
+    console.log('Searching for:', searchTerm);
     // For example, you might:
     // - Make an API call with the searchTerm
     // - Filter data on the client-side
@@ -66,7 +71,7 @@ const HeaderMobile = () => {
           {/* hamburgeer button */}
           <div
             className={`fixed transition-all duration-300 ease-in-out block
-                ${isOpen ? "rotate-180 -translate-x-10" : ""}
+                ${isOpen ? 'rotate-180 -translate-x-10' : ''}
                 `}
             onClick={handleClick}
           >
@@ -74,7 +79,7 @@ const HeaderMobile = () => {
           </div>
           <div
             className={`transition-all duration-300 ease-in-out block
-                ${!isOpen ? "rotate-180 -translate-x-100" : ""}
+                ${!isOpen ? 'rotate-180 -translate-x-100' : ''}
                 `}
             onClick={handleClick}
           >
@@ -95,7 +100,7 @@ const HeaderMobile = () => {
                 <FaSearch onClick={handleSearchClick} />
                 <div
                   className={`transition-all duration-500 ease-in-out flex fixed top-[40px] right-0 w-full h-[100px] shadow-xl bg-[#37464A] text-white  justify-center items-center
-                 ${isSearchOpen ? "" : "translate-x-200"}
+                 ${isSearchOpen ? '' : 'translate-x-200'}
                  `}
                 >
                   <div className="flex items-center justify-between pb-2 border-b-1 w-3/4">
@@ -117,13 +122,16 @@ const HeaderMobile = () => {
                 onMouseEnter={handleMouseEnterLeave}
                 className="hover:text-[#F49805] flex gap-1"
               >
-                <AiOutlineShoppingCart className="text-[15px]" />
-                <span>0</span>
-                {isModalOpen && (
+                <AiOutlineShoppingCart
+                  className="text-[15px]"
+                  onClick={() => handleCartClick()}
+                />
+                <span>{cartCount}</span>
+                {cartCount === 0 && isModalOpen && (
                   <div
                     className={`flex transition-all duration-500 ease-in-out fixed top-[40px] right-0 w-[400px] h-[100px]  rounded-lg shadow-xl bg-white text-black bg-opacity-50 z-50 justify-center items-center
-                    ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                    style={{ transitionProperty: "opacity" }}
+                    ${isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    style={{ transitionProperty: 'opacity' }}
                   >
                     <p className="uppercase text-[18px]">
                       Votre panier est vide
@@ -138,9 +146,9 @@ const HeaderMobile = () => {
         {/* menu */}
         <div
           className={`transition-all duration-1000 ease-in-out h-full block rounded-xl bg-white fixed w-1/2
-          ${!isOpen ? "-translate-x-100" : ""}
+          ${!isOpen ? '-translate-x-100' : ''}
           `}
-          style={{ overflowY: "auto" }}
+          style={{ overflowY: 'auto' }}
         >
           <MobileTopMenu />
           <MobileMegaMenu />
@@ -167,7 +175,7 @@ const HeaderMobile = () => {
               <Link href="#">Devenir Ambassadeur</Link>
             </li>
             <li>
-              ` {/* socials */}`{" "}
+              ` {/* socials */}`{' '}
               <ul className="flex justify-between px-5 pt-5 pb-5 text-[20px] text-white">
                 <li className="bg-[#349BF1] p-2 rounded-3xl">
                   <Link

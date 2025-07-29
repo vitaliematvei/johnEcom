@@ -1,17 +1,17 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "../../../public/assets/images/Logo.avif";
-import CartSidebar from "../ui/Button/CartSidebar"; // Assuming CartSidebar is in the same directory
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '../../../public/assets/images/Logo.avif';
+import CartSidebar from '../ui/Button/CartSidebar';
 
-import { FaTwitter } from "react-icons/fa";
-import { FaFacebookF } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
-import { AiOutlineMail } from "react-icons/ai";
-import { FaRegUser } from "react-icons/fa";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { useShoppingCart } from "use-shopping-cart";
+import { FaTwitter } from 'react-icons/fa';
+import { FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
+import { AiOutlineMail } from 'react-icons/ai';
+import { FaRegUser } from 'react-icons/fa';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useShoppingCart } from 'use-shopping-cart';
 
 const Header = () => {
   const { cartCount, handleCartClick } = useShoppingCart();
@@ -149,8 +149,8 @@ const Header = () => {
               {cartCount === 0 && isModalOpen && (
                 <div
                   className={`flex transition-all duration-500 ease-in-out fixed top-[40px] right-0 w-[400px] h-[100px]  rounded-lg shadow-xl bg-white text-black bg-opacity-50 z-50 justify-center items-center
-                    ${isModalOpen ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                  style={{ transitionProperty: "opacity" }}
+                    ${isModalOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  style={{ transitionProperty: 'opacity' }}
                 >
                   <p className="uppercase text-[18px]">Votre panier est vide</p>
                 </div>

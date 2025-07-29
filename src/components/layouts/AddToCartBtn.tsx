@@ -39,9 +39,9 @@ const AddToCartBtn = ({
   const buttonColorClass = addedToCart ? 'bg-green-600' : 'bg-blue-600';
   return (
     <button
-      className={`${buttonColorClass} text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition-all duration-200`}
+      className={`${buttonColorClass} text-white px-3 py-2 rounded hover:bg-blue-700 hover:scale-105 transition-all duration-200`}
       onClick={handleClick}
-      disabled={addedToCart} // Optionally disable the button after adding
+      disabled={addedToCart}
     >
       {addedToCart ? 'Added to Cart!' : 'Add to Cart'}
     </button>
