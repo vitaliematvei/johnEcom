@@ -25,7 +25,7 @@ const AddToCartBtn = ({
     name: name,
     description: description,
     images: images?.map((img) => img.asset.url) || [],
-    price: price * 100,
+    price: price,
     currency: currency,
   };
 

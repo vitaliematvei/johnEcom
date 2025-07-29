@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Link from "next/link";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-import MobileMegaMenuLamp from "./mobileMegaMenuElements/Mobile-Mega-Menu-Lamp";
-import MobileMegaMenuEclairge from "./mobileMegaMenuElements/Mobile-Mega-Menu-Eclairge";
-import MobileMegaMenuGuirlande from "./mobileMegaMenuElements/Mobile-Mega-Menu-Guirlande";
-import MobileMegaMenuDecoration from "./mobileMegaMenuElements/Mobile-Mega-Menu-Decoration";
-import MobileMegaMenuLampadaire from "./mobileMegaMenuElements/Mobile-Mega-Menu-Lampadaire";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
+import MobileMegaMenuLamp from './mobileMegaMenuElements/Mobile-Mega-Menu-Lamp';
+import MobileMegaMenuEclairge from './mobileMegaMenuElements/Mobile-Mega-Menu-Eclairge';
+import MobileMegaMenuGuirlande from './mobileMegaMenuElements/Mobile-Mega-Menu-Guirlande';
+import MobileMegaMenuDecoration from './mobileMegaMenuElements/Mobile-Mega-Menu-Decoration';
+import MobileMegaMenuLampadaire from './mobileMegaMenuElements/Mobile-Mega-Menu-Lampadaire';
 
 const MobileMegaMenu = () => {
   // Separate state for each dropdown
@@ -18,7 +18,7 @@ const MobileMegaMenu = () => {
 
   return (
     <div>
-      <ul className="space-y-5 ">
+      <ul className="space-y-5">
         <li>
           <div
             className="text-black flex justify-between  uppercase text-xl border-b-1"
@@ -30,14 +30,14 @@ const MobileMegaMenu = () => {
 
             <div
               className={`transition-all duration-500 ease-in-out block 
-                ${isLampOpen ? "rotate-180 -translate-x-1000" : ""}
+                ${isLampOpen ? 'rotate-180 -translate-x-1000' : ''}
                 `}
             >
               <IoIosArrowForward />
             </div>
             <div
               className={`transition-all duration-500 ease-in-out block
-                ${!isLampOpen ? "rotate-180 -translate-x-1000 " : "mr-5"}
+                ${!isLampOpen ? 'rotate-180 -translate-x-1000 ' : 'mr-5'}
                 `}
             >
               <IoIosArrowBack />
@@ -58,14 +58,14 @@ const MobileMegaMenu = () => {
 
             <div
               className={`transition-all duration-500 ease-in-out block 
-                ${isEclairgeOpen ? "rotate-180 -translate-x-1000" : ""}
+                ${isEclairgeOpen ? 'rotate-180 -translate-x-1000' : ''}
                 `}
             >
               <IoIosArrowForward />
             </div>
             <div
               className={`transition-all duration-500 ease-in-out block
-                ${!isEclairgeOpen ? "rotate-180 -translate-x-1000 " : "mr-5"}
+                ${!isEclairgeOpen ? 'rotate-180 -translate-x-1000 ' : 'mr-5'}
                 `}
             >
               <IoIosArrowBack />
@@ -86,14 +86,14 @@ const MobileMegaMenu = () => {
 
             <div
               className={`transition-all duration-500 ease-in-out block 
-                ${isGuirlandeOpen ? "rotate-180 -translate-x-1000" : ""}
+                ${isGuirlandeOpen ? 'rotate-180 -translate-x-1000' : ''}
                 `}
             >
               <IoIosArrowForward />
             </div>
             <div
               className={`transition-all duration-500 ease-in-out block
-                ${!isGuirlandeOpen ? "rotate-180 -translate-x-1000 " : "mr-5"}
+                ${!isGuirlandeOpen ? 'rotate-180 -translate-x-1000 ' : 'mr-5'}
                 `}
             >
               <IoIosArrowBack />
@@ -114,14 +114,14 @@ const MobileMegaMenu = () => {
 
             <div
               className={`transition-all duration-500 ease-in-out block 
-                ${isDecorationOpen ? "rotate-180 -translate-x-1000" : ""}
+                ${isDecorationOpen ? 'rotate-180 -translate-x-1000' : ''}
                 `}
             >
               <IoIosArrowForward />
             </div>
             <div
               className={`transition-all duration-500 ease-in-out block
-                ${!isDecorationOpen ? "rotate-180 -translate-x-1000 " : "mr-5"}
+                ${!isDecorationOpen ? 'rotate-180 -translate-x-1000 ' : 'mr-5'}
                 `}
             >
               <IoIosArrowBack />
@@ -142,14 +142,14 @@ const MobileMegaMenu = () => {
 
             <div
               className={`transition-all duration-500 ease-in-out block 
-                ${isLampadaireOpen ? "rotate-180 -translate-x-1000" : ""}
+                ${isLampadaireOpen ? 'rotate-180 -translate-x-1000' : ''}
                 `}
             >
               <IoIosArrowForward />
             </div>
             <div
               className={`transition-all duration-500 ease-in-out block
-                ${!isLampadaireOpen ? "rotate-180 -translate-x-1000 " : "mr-5"}
+                ${!isLampadaireOpen ? 'rotate-180 -translate-x-1000 ' : 'mr-5'}
                 `}
             >
               <IoIosArrowBack />

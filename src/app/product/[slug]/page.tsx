@@ -1,8 +1,8 @@
-import React from "react";
-import { client } from "@/sanity/client";
-import { groq, type SanityDocument } from "next-sanity";
-import AddToCartBtn from "@/components/layouts/AddToCartBtn"; // Assuming this path is correct
-import ImageGallery from "./ImageGallery";
+import React from 'react';
+import { client } from '@/sanity/client';
+import { groq, type SanityDocument } from 'next-sanity';
+import AddToCartBtn from '@/components/layouts/AddToCartBtn'; // Assuming this path is correct
+import ImageGallery from './ImageGallery';
 
 interface Product extends SanityDocument {
   name: string;
@@ -10,10 +10,10 @@ interface Product extends SanityDocument {
   price?: number;
   slug: string;
   images?: {
-    _type: "image";
+    _type: 'image';
     asset: {
       _ref: string;
-      _type: "reference";
+      _type: 'reference';
       url: string;
     };
     alt?: string;
@@ -84,7 +84,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
 
           {product.price !== undefined && (
             <p className="text-4xl font-bold text-green-700 mb-6">
-              ${product.price.toFixed(2)}
+              ${(product.price / 100).toFixed(2)}
             </p>
           )}
 
@@ -99,7 +99,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
               id={product._id}
               currency="USD"
               name={product.name}
-              description={product.description ?? ""}
+              description={product.description ?? ''}
               price={product.price ?? 0}
               images={
                 product.images && product.images.length > 0

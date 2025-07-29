@@ -59,7 +59,7 @@ async function ProductList() {
   );
 
   return (
-    <div className="product-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.length > 0 ? (
         products.map((product) => (
           <div
@@ -68,7 +68,7 @@ async function ProductList() {
           >
             {/* Product Image */}
             {product.images && product.images.length > 0 && (
-              <div className="relative w-full h-48">
+              <div className="relative w-full h-48 -z-10">
                 {' '}
                 {/* Fixed height for images */}
                 <Image
@@ -98,7 +98,7 @@ async function ProductList() {
 
               {product.price !== undefined && (
                 <p className="text-lg font-bold text-gray-900 mb-4">
-                  Price: ${product.price.toFixed(2)}
+                  Price: ${(product.price / 100).toFixed(2)}
                 </p>
               )}
 
@@ -112,7 +112,7 @@ async function ProductList() {
                     product.images
                       ? (product.images
                           .map((img) =>
-                            img && img.asset.url
+                            img && img.asset
                               ? { asset: { url: img.asset.url } }
                               : null
                           )

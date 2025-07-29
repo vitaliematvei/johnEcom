@@ -150,7 +150,10 @@ const HeaderMobile = () => {
           style={{ overflowY: 'auto' }}
         >
           <MobileTopMenu />
-          <MobileMegaMenu />
+          <div className="z-50">
+            <MobileMegaMenu />
+          </div>
+
           <ul className="text-xl  border-black text-center pt-5">
             <li className="hover:text-[#F49805] py-2">
               <Link href="#">Chat</Link>

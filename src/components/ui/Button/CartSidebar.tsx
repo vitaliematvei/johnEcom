@@ -6,9 +6,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from '@/components/ui/sheet';
-import { ScrollArea } from '@radix-ui/react-scroll-area';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { useShoppingCart } from 'use-shopping-cart';
-import CartItem from '../CartItem'; // Adjust the import path as necessary
+import CartItem from '../CartItem';
+import CheckoutBtn from './CheckoutBtn';
 
 const CartSidebar = () => {
   const {
@@ -16,18 +17,18 @@ const CartSidebar = () => {
     cartDetails,
     shouldDisplayCart,
     handleCartClick,
-    // totalPrice,
+    totalPrice,
   } = useShoppingCart();
   return (
     <Sheet open={shouldDisplayCart} onOpenChange={() => handleCartClick()}>
       <SheetContent>
         <SheetHeader>
           <SheetTitle className="text-left mb-12">
-            My Shipping Cart({cartCount})
+            My Shipping Cart({cartCount ?? 0})
           </SheetTitle>
         </SheetHeader>
         <>
-          {cartCount === 0 ? (
+          {(cartCount ?? 0) === 0 ? (
             <div>Your cart is empty</div>
           ) : (
             <ScrollArea className="h-[70vh] xl:h-[74vh] pr-4 mb-4">
@@ -43,6 +44,15 @@ const CartSidebar = () => {
                     />
                   );
                 })}
+              {(cartCount ?? 0) > 0 && (
+                <div>
+                  <div className="flex justify-between items-center font-semibold">
+                    <div className="uppercase mb-5 px-5">Total</div>
+                    <div className="px-5">${totalPrice}</div>
+                  </div>
+                  <CheckoutBtn />
+                </div>
+              )}
             </ScrollArea>
           )}
         </>

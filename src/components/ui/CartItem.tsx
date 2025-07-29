@@ -49,7 +49,7 @@ const CartItem = ({ item }: CartItemProps) => {
             </button>
           </div>
           <div className="font-semibold text-balance text-right">
-            {item.price * item.quantity}
+            ${((item.price / 100) * item.quantity).toFixed(2)}
           </div>
         </div>
       </div>
