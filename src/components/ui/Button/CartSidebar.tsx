@@ -48,7 +48,9 @@ const CartSidebar = () => {
                 <div>
                   <div className="flex justify-between items-center font-semibold">
                     <div className="uppercase mb-5 px-5">Total</div>
-                    <div className="px-5">${(totalPrice / 100).toFixed(2)}</div>
+                    <div className="px-5">
+                      ${((totalPrice ?? 0) / 100).toFixed(2)}
+                    </div>
                   </div>
                   <CheckoutBtn />
                 </div>
