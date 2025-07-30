@@ -83,7 +83,6 @@ async function ProductList() {
                 />
               </div>
             )}
-
             <div className="p-4 flex-grow flex flex-col justify-between">
               <h2 className="text-xl font-semibold text-gray-800 mb-2">
                 {product.name}
@@ -120,7 +119,7 @@ async function ProductList() {
                       : []
                   }
                   price={product.price ?? 0}
-                  currency="CAD"
+                  currency="USD"
                 />
 
                 <Link
