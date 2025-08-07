@@ -5,10 +5,10 @@ import { NextResponse } from 'next/server';
 // Make sure to add `STRIPE_SECRET_KEY` to your environment variables
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
-// We've removed the `any` type here and defined the expected properties
 interface CartItem {
   price_id: string;
   quantity: number;
+  [key: string]: any;
 }
 
 interface CartDetails {
@@ -33,9 +33,11 @@ export async function POST(req: Request): Promise<Response> {
 
   try {
     const lineItems = Object.values(cartDetails).map((item: CartItem) => {
-      // The `price_id` is crucial and must match the ID in your Stripe Dashboard.
+      // Log the item data to check for any issues
+      console.log('Processing item:', item);
+
+      // The `price_id` is crucial here and must match the ID in your Stripe Dashboard.
       if (!item.price_id) {
-        // Log the error for debugging purposes
         console.error('Item is missing a price_id:', item);
         throw new Error('All items must have a price_id.');
       }
@@ -56,12 +58,8 @@ export async function POST(req: Request): Promise<Response> {
     });
 
     return NextResponse.json({ sessionId: session.id });
-  } catch (err) {
-    // This is the new, safer way to handle errors without using `any`.
-    // We check if the error is an instance of the native Error object.
-    const errorMessage =
-      err instanceof Error ? err.message : 'An unknown error occurred.';
-    console.error('Stripe session creation error:', errorMessage);
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+  } catch (err: any) {
+    console.error('Stripe session creation error:', err);
+    return NextResponse.json({ error: err.message }, { status: 500 });
   }
 }
