@@ -8,7 +8,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 interface CartItem {
   price_id: string;
   quantity: number;
-  [key: string]: any;
+  //   [key: string]: any;
 }
 
 interface CartDetails {
