@@ -35,10 +35,16 @@ export async function POST(req: Request): Promise<Response> {
     );
   }
 
+  const protocol = process.env.NODE_ENV === 'production' ? 'https' : 'http';
+  const vercelUrl = process.env.VERCEL_URL;
+  const baseUrl = vercelUrl
+    ? `${protocol}://${vercelUrl}`
+    : `${req.headers.get('origin')}`;
+
   try {
     const lineItems = Object.values(cartDetails).map((item: CartItem) => {
       // Log the item data to check for any issues
-      console.log('Processing item:', item);
+      //   console.log('Processing item:', item);
 
       // The `price_id` is crucial here and must match the ID in your Stripe Dashboard.
       if (!item.price_id) {
@@ -56,8 +62,8 @@ export async function POST(req: Request): Promise<Response> {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
-      success_url: `${req.headers.get('origin')}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${req.headers.get('origin')}/cancel`,
+      success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/cancel`,
       customer_email: customerEmail,
     });
 
