@@ -3,7 +3,11 @@ import { NextResponse } from 'next/server';
 
 // Initialize Stripe with your secret key
 // Make sure to add `STRIPE_SECRET_KEY` to your environment variables
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+if (!stripeSecretKey) {
+  throw new Error('STRIPE_SECRET_KEY is not set in environment variables.');
+}
+const stripe = new Stripe(stripeSecretKey);
 
 interface CartItem {
   price_id: string;
