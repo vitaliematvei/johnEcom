@@ -11,7 +11,7 @@ const stripePromise = loadStripe(
 );
 
 const CheckoutBtn = () => {
-  const { cartDetails, totalPrice, clearCart } = useShoppingCart();
+  const { cartDetails } = useShoppingCart();
 
   const handleCheckout = async () => {
     try {
