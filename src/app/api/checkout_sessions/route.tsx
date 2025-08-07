@@ -58,8 +58,10 @@ export async function POST(req: Request): Promise<Response> {
     });
 
     return NextResponse.json({ sessionId: session.id });
-  } catch (err: any) {
-    console.error('Stripe session creation error:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (err) {
+    const errorMessage =
+      err instanceof Error ? err.message : 'An unknown error occurred.';
+    console.error('Stripe session creation error:', errorMessage);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
