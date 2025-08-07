@@ -8,6 +8,7 @@ interface Product extends SanityDocument {
   name: string;
   description?: string;
   price?: number;
+  price_id: string;
   slug: string;
   images?: {
     _type: 'image';
@@ -27,6 +28,7 @@ const PRODUCT_QUERY = groq`
     "slug": slug.current,
     description,
     price,
+    price_id,
     images[]{
       _key,
       _type,
@@ -97,10 +99,11 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
           <div className="mt-auto pt-6 border-t border-gray-200">
             <AddToCartBtn
               id={product._id}
-              currency="USD"
+              currency="CAD"
               name={product.name}
               description={product.description ?? ''}
               price={product.price ?? 0}
+              price_id={product.price_id}
               images={
                 product.images && product.images.length > 0
                   ? product.images.map((img) => ({

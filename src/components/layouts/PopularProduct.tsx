@@ -5,21 +5,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
-// interface ImageAsset {
-//   url: string;
-// }
-
-// Define the interface for an individual image object
-// interface ProductImage {
-//   _key: string;
-//   _type: string;
-//   asset: ImageAsset;
-// }
-
 interface Product extends SanityDocument {
   name: string;
   description: string;
   price: number;
+  price_id: string;
   slug: string; // The slug will be a string (slug.current) from the query
   images?: {
     _type: 'image';
@@ -39,6 +29,7 @@ const PRODUCTS_QUERY = groq`
     "slug": slug.current, // Get the string value of the slug
     description,
     price,
+    price_id,
     images[]{
       _key,
       _type,
@@ -58,6 +49,7 @@ async function ProductList() {
     { next: { revalidate: 30 } }
   );
 
+  console.log('Fetched products:', products);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
       {products.length > 0 ? (
@@ -104,6 +96,7 @@ async function ProductList() {
               <div className="flex items-center justify-between mt-auto">
                 {/* <AddToCartBtn product={product} /> */}
                 <AddToCartBtn
+                  price_id={product.price_id}
                   id={product._id}
                   name={product.name}
                   description={product.description || ''}
@@ -119,7 +112,7 @@ async function ProductList() {
                       : []
                   }
                   price={product.price ?? 0}
-                  currency="USD"
+                  currency="CAD"
                 />
 
                 <Link

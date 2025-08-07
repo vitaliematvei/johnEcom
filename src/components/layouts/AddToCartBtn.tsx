@@ -9,6 +9,7 @@ type AddToCartBtnProps = {
   description: string;
   images: { asset: { url: string } }[];
   price: number;
+  price_id: string;
 };
 
 const AddToCartBtn = ({
@@ -18,6 +19,7 @@ const AddToCartBtn = ({
   description,
   images,
   price,
+  price_id,
 }: AddToCartBtnProps) => {
   const { addItem } = useShoppingCart();
   const product = {
@@ -27,6 +29,7 @@ const AddToCartBtn = ({
     images: images?.map((img) => img.asset.url) || [],
     price: price,
     currency: currency,
+    price_id: price_id,
   };
 
   // State to manage if the item has been added to the cart

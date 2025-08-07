@@ -9,10 +9,11 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     <CProvider
       mode="payment"
       cartMode="client-only"
-      stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ''}
-      successUrl="/success"
-      cancelUrl="/error"
-      currency="USD"
+      stripe={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
+      successUrl="http://localhost:3000/success/stripe/success"
+      cancelUrl="http://localhost:3000/success/stripe/error"
+      language="en-US"
+      currency="CAD"
       //   allowedCountries={["US"]}
       billingAddressCollection={true}
       shouldPersist={true}
