@@ -2,7 +2,7 @@
 // import { type SanityDocument } from "next-sanity";
 // import Image from "next/image";
 // import { urlFor } from "@/sanity/client";
-import ProductDetails from "../components/layouts/PopularProduct";
+import ProductList from '../components/layouts/ProductList';
 
 // import { client } from "@/sanity/client";
 
@@ -30,7 +30,7 @@ export default function IndexPage() {
     <main className="mx-auto min-h-screen p-8">
       <h1 className="text-4xl font-bold mb-8 text-center">Products</h1>
       <div className="mx-auto text-center">
-        <ProductDetails />
+        <ProductList />
       </div>
 
       {/* <ul className="flex flex-wrap gap-x-10 text-center items-center">

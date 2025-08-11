@@ -1,4 +1,5 @@
 import React from 'react';
+import { PortableText, type PortableTextBlock } from '@portabletext/react';
 import { client, urlFor } from '@/sanity/client';
 import { groq, type SanityDocument } from 'next-sanity';
 import Image from 'next/image';
@@ -7,7 +8,7 @@ import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the sa
 
 interface Product extends SanityDocument {
   name: string;
-  description: string;
+  description: PortableTextBlock[];
   price: number;
   price_id: string;
   slug: string; // The slug will be a string (slug.current) from the query
@@ -27,7 +28,7 @@ const PRODUCTS_QUERY = groq`
     _id,
     name,
     "slug": slug.current, // Get the string value of the slug
-    description,
+    description[],
     price,
     price_id,
     images[]{
@@ -48,6 +49,20 @@ async function ProductList() {
     {},
     { next: { revalidate: 30 } }
   );
+
+  const getPlainText = (blocks: any[]): string => {
+    if (!blocks || blocks.length === 0) {
+      return '';
+    }
+    return blocks
+      .map((block) => {
+        if (block._type !== 'block' || !block.children) {
+          return '';
+        }
+        return block.children.map((span: any) => span.text).join('');
+      })
+      .join('\n');
+  };
 
   console.log('Fetched products:', products);
   return (
@@ -80,12 +95,11 @@ async function ProductList() {
                 {product.name}
               </h2>
 
-              {product.description && (
-                <p className="text-gray-700 text-sm mb-4 line-clamp-3">
-                  {/* Limit description lines */}
-                  {product.description}
-                </p>
-              )}
+              {/* {product.description && (
+                <div className="text-gray-700 text-sm mb-4 line-clamp-3">
+                  <PortableText value={product.description} />
+                </div>
+              )} */}
 
               {product.price !== undefined && (
                 <p className="text-lg font-bold text-gray-900 mb-4">
@@ -99,7 +113,7 @@ async function ProductList() {
                   price_id={product.price_id}
                   id={product._id}
                   name={product.name}
-                  description={product.description || ''}
+                  description={getPlainText(product.description)}
                   images={
                     product.images
                       ? (product.images

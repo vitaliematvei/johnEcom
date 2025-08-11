@@ -1,6 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Harmonia+Sans:wght@400;700&display=swap");
-@import "tailwindcss";
-@import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Harmonia+Sans:wght@400;700&display=swap');
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -56,7 +56,7 @@
 } */
 
 body {
-  font-family: "Harmonia Sans", Arial, Helvetica, sans-serif;
+  font-family: 'Harmonia Sans', Arial, Helvetica, sans-serif;
 }
 
 @theme inline {
@@ -138,4 +138,10 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* In your global CSS file */
+.rich-text-content ul {
+  list-style-type: disc; /* Use 'disc' for solid circles or 'circle' for hollow */
+  padding-left: 1.5rem; /* Add some indentation */
 }

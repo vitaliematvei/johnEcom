@@ -1,4 +1,5 @@
 import React from 'react';
+import { PortableText, type PortableTextBlock } from '@portabletext/react';
 import { client } from '@/sanity/client';
 import { groq, type SanityDocument } from 'next-sanity';
 import AddToCartBtn from '@/components/layouts/AddToCartBtn'; // Assuming this path is correct
@@ -6,7 +7,7 @@ import ImageGallery from './ImageGallery';
 
 interface Product extends SanityDocument {
   name: string;
-  description?: string;
+  description: PortableTextBlock[];
   price?: number;
   price_id: string;
   slug: string;
@@ -26,7 +27,7 @@ const PRODUCT_QUERY = groq`
     _id,
     name,
     "slug": slug.current,
-    description,
+    description[],
     price,
     price_id,
     images[]{
@@ -54,6 +55,20 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
     { next: { revalidate: 30 } }
   );
 
+  const getPlainText = (blocks: any[]): string => {
+    if (!blocks || blocks.length === 0) {
+      return '';
+    }
+    return blocks
+      .map((block) => {
+        if (block._type !== 'block' || !block.children) {
+          return '';
+        }
+        return block.children.map((span: any) => span.text).join('');
+      })
+      .join('\n');
+  };
+
   if (!product) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-100">
@@ -68,7 +83,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
         {/* Product Images Section - Now handled by ImageGallery */}
         {product.images && product.images.length > 0 ? (
           <ImageGallery
-            key={product.name.toString()}
+            key={product.name.toString() + 1}
             images={product.images}
             productName={product.name}
           />
@@ -91,8 +106,9 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
           )}
 
           {product.description && (
-            <div className="text-gray-700 leading-relaxed mb-8">
-              <p>{product.description}</p>
+            <div className="text-gray-700 leading-relaxed mb-8 rich-text-content">
+              {/* <p>{product.description}</p> */}
+              <PortableText value={product.description} />
             </div>
           )}
 
@@ -101,7 +117,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
               id={product._id}
               currency="CAD"
               name={product.name}
-              description={product.description ?? ''}
+              description={getPlainText(product.description)}
               price={product.price ?? 0}
               price_id={product.price_id}
               images={
