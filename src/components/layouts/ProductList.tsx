@@ -1,5 +1,5 @@
 import React from 'react';
-import { PortableText, type PortableTextBlock } from '@portabletext/react';
+import { type PortableTextBlock } from '@portabletext/react';
 import { client, urlFor } from '@/sanity/client';
 import { groq, type SanityDocument } from 'next-sanity';
 import Image from 'next/image';
@@ -50,7 +50,7 @@ async function ProductList() {
     { next: { revalidate: 30 } }
   );
 
-  const getPlainText = (blocks: any[]): string => {
+  const getPlainText = (blocks: PortableTextBlock[]): string => {
     if (!blocks || blocks.length === 0) {
       return '';
     }
@@ -59,7 +59,7 @@ async function ProductList() {
         if (block._type !== 'block' || !block.children) {
           return '';
         }
-        return block.children.map((span: any) => span.text).join('');
+        return block.children.map((span) => span.text).join('');
       })
       .join('\n');
   };

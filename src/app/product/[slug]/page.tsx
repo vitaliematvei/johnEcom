@@ -55,7 +55,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
     { next: { revalidate: 30 } }
   );
 
-  const getPlainText = (blocks: any[]): string => {
+  const getPlainText = (blocks: PortableTextBlock[]): string => {
     if (!blocks || blocks.length === 0) {
       return '';
     }
@@ -64,7 +64,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
         if (block._type !== 'block' || !block.children) {
           return '';
         }
-        return block.children.map((span: any) => span.text).join('');
+        return block.children.map((span) => span.text).join('');
       })
       .join('\n');
   };
