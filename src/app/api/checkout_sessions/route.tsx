@@ -65,6 +65,9 @@ export async function POST(req: Request): Promise<Response> {
       success_url: `${baseUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/cancel`,
       customer_email: customerEmail,
+      shipping_address_collection: {
+        allowed_countries: ['CA'], // Adjust as needed
+      },
     });
 
     return NextResponse.json({ sessionId: session.id });
