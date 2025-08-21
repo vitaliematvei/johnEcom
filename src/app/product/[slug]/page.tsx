@@ -83,7 +83,7 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
         {/* Product Images Section - Now handled by ImageGallery */}
         {product.images && product.images.length > 0 ? (
           <ImageGallery
-            key={product.name.toString() + 1}
+            // key={product.name.toString()}
             images={product.images}
             productName={product.name}
           />

@@ -1,14 +1,14 @@
-// components/ProductPage/ImageGallery.tsx
-"use client";
+// File: ImageGallery.tsx
+'use client';
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface ImageProps {
-  _type: "image";
+  _type: 'image';
   asset: {
     _ref: string;
-    _type: "reference";
+    _type: 'reference';
     url: string;
   };
   alt?: string;
@@ -35,15 +35,15 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName }) => {
       {/* Main Image */}
       <div
         className="mb-4 w-full relative"
-        style={{ paddingTop: "75%" }} // Maintain aspect ratio
+        style={{ paddingTop: '75%' }} // Maintain aspect ratio
       >
         <Image
           src={mainImage.asset.url}
-          alt={mainImage.alt || productName || "Product image"}
+          alt={mainImage.alt || productName || 'Product image'}
           fill
           priority
           sizes="(max-width: 768px) 100vw, 50vw"
-          style={{ objectFit: "contain" }}
+          style={{ objectFit: 'contain' }}
           className="rounded-lg shadow-md"
         />
       </div>
@@ -53,11 +53,11 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName }) => {
         <div className="flex flex-wrap gap-3 justify-center mt-4">
           {images.map((image) => (
             <div
-              key={image.asset._ref} // Use asset._ref for a stable key
+              key={image.asset._ref} // This is the correct and only required key
               className={`w-20 h-20 relative cursor-pointer border rounded-md overflow-hidden transition-opacity ${
                 mainImage.asset._ref === image.asset._ref
-                  ? "border-blue-500 ring-2 ring-blue-500"
-                  : "hover:opacity-80"
+                  ? 'border-blue-500 ring-2 ring-blue-500'
+                  : 'hover:opacity-80'
               }`}
               onClick={() => setMainImage(image)}
               onMouseEnter={() => setMainImage(image)} // Optional: change on hover
@@ -66,7 +66,7 @@ const ImageGallery: React.FC<ImageGalleryProps> = ({ images, productName }) => {
                 src={image.asset.url}
                 alt={image.alt || `Thumbnail for ${productName}`}
                 fill
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: 'cover' }}
                 sizes="80px"
                 className="rounded-md"
               />
