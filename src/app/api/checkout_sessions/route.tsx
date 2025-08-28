@@ -1,6 +1,8 @@
 import Stripe from 'stripe';
 import { NextResponse } from 'next/server';
 
+console.log('Cheia secreta citita de cod:', process.env.STRIPE_SECRET_KEY);
+
 // Initialize Stripe with your secret key
 // Make sure to add `STRIPE_SECRET_KEY` to your environment variables
 const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
