@@ -1,21 +1,21 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import FooterMenuAccordeonLenergie from "./Footer-Menu-Accordeon-Lenergie";
-import FooterMenuAccordeonLampe from "./Footer-Menu-Accordeon-Lampe";
+'use client';
+import React from 'react';
+import Image from 'next/image';
+import FooterMenuAccordeonLenergie from './Footer-Menu-Accordeon-Lenergie';
+import FooterMenuAccordeonLampe from './Footer-Menu-Accordeon-Lampe';
 
-import Car from "../../../public/assets/images/Footer/truck_1-footer.webp";
-import Lampe from "../../../public/assets/images/Footer/lamp-ecology-footer.webp";
-import Customer from "../../../public/assets/images/Footer/customer-service-footer.webp";
-import Card from "../../../public/assets/images/Footer/credit-card-footer.webp";
-import Logo from "../../../public/assets/images/Logo.avif";
-import Payments from "../../../public/assets/images/Footer/Visa.png";
+import Car from '../../../public/assets/images/Footer/truck_1-footer.webp';
+import Lampe from '../../../public/assets/images/Footer/lamp-ecology-footer.webp';
+import Customer from '../../../public/assets/images/Footer/customer-service-footer.webp';
+import Card from '../../../public/assets/images/Footer/credit-card-footer.webp';
+import Logo from '../../../public/assets/images/Logo.avif';
+import Payments from '../../../public/assets/images/Footer/Visa.png';
 
 const items = [
-  {
-    image: Car,
-    text: "Livraison en France dans les DOM-TOM et partout en Europe ! 📦 LIVRAISON GRATUITE DÈS 99 € !",
-  },
+  // {
+  //   image: Car,
+  //   text: "Livraison en France dans les DOM-TOM et partout en Europe ! 📦 LIVRAISON GRATUITE DÈS 99 € !",
+  // },
   {
     image: Lampe,
     text: "Satisfait ou Remboursé : vous avez 14 jours pour changer d'avis.",
@@ -26,7 +26,7 @@ const items = [
   },
   {
     image: Card,
-    text: "Nous utilisons le cryptage SSL pour des paiements en toute sécurité.",
+    text: 'Nous utilisons le cryptage SSL pour des paiements en toute sécurité.',
   },
 ];
 
