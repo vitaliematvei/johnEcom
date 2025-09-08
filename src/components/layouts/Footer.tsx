@@ -4,7 +4,7 @@ import Image from 'next/image';
 import FooterMenuAccordeonLenergie from './Footer-Menu-Accordeon-Lenergie';
 import FooterMenuAccordeonLampe from './Footer-Menu-Accordeon-Lampe';
 
-import Car from '../../../public/assets/images/Footer/truck_1-footer.webp';
+// import Car from '../../../public/assets/images/Footer/truck_1-footer.webp';
 import Lampe from '../../../public/assets/images/Footer/lamp-ecology-footer.webp';
 import Customer from '../../../public/assets/images/Footer/customer-service-footer.webp';
 import Card from '../../../public/assets/images/Footer/credit-card-footer.webp';
