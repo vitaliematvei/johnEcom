@@ -5,9 +5,6 @@ import Image from 'next/image';
 
 import { FaSearch } from 'react-icons/fa';
 import { IoIosArrowDown } from 'react-icons/io';
-import Logo from '../../../public/assets/images/Logo.avif';
-import Logo2 from '../../../public/assets/images/LogoLampeSolaire.png';
-import Logo3 from '../../../public/assets/images/PanouriFotoLogo.png';
 import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 
 import MegaMenuLamp from './megaMenuElemets/Mega-Menu-Lamp';

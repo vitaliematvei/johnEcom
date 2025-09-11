@@ -7,8 +7,6 @@ import { TailwindClasses } from '@/types';
 
 import { useShoppingCart } from 'use-shopping-cart';
 
-import Logo from '../../../public/assets/images/Logo.avif';
-import Logo2 from '../../../public/assets/images/LogoPanuSolar.png';
 import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 import MobileTopMenu from './Mobile-Top-Menu';
 import MobileMegaMenu from './Mobile-Mega-Menu';

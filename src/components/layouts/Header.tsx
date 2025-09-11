@@ -2,8 +2,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Logo from '../../../public/assets/images/Logo.avif';
-import Logo2 from '../../../public/assets/images/LogoPanuSolar.png';
 import CartSidebar from '../ui/Button/CartSidebar';
 import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 
