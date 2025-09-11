@@ -8,6 +8,8 @@ import { TailwindClasses } from '@/types';
 import { useShoppingCart } from 'use-shopping-cart';
 
 import Logo from '../../../public/assets/images/Logo.avif';
+import Logo2 from '../../../public/assets/images/LogoPanuSolar.png';
+import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 import MobileTopMenu from './Mobile-Top-Menu';
 import MobileMegaMenu from './Mobile-Mega-Menu';
 import MobileMenuConnextion from './Mobile-Menu-Connextion';
@@ -88,7 +90,7 @@ const HeaderMobile = () => {
           {/* logo */}
           <div className="pt-2">
             <Link href="#">
-              <Image src={Logo} alt="Logo" width={50}></Image>
+              <Image src={myLogo} alt="Logo" width={50}></Image>
             </Link>
           </div>
 

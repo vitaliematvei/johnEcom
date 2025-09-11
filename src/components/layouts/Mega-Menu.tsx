@@ -1,22 +1,25 @@
-"use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+'use client';
+import React, { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
 
-import { FaSearch } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
-import Logo from "../../../public/assets/images/Logo.avif";
+import { FaSearch } from 'react-icons/fa';
+import { IoIosArrowDown } from 'react-icons/io';
+import Logo from '../../../public/assets/images/Logo.avif';
+import Logo2 from '../../../public/assets/images/LogoLampeSolaire.png';
+import Logo3 from '../../../public/assets/images/PanouriFotoLogo.png';
+import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 
-import MegaMenuLamp from "./megaMenuElemets/Mega-Menu-Lamp";
-import MegaMenuEclairge from "./megaMenuElemets/Mega-Menu-Eclairge";
-import MegaMenuGuirlande from "./megaMenuElemets/Mega-Menu-Guirlande";
-import MegaMenuDecoration from "./megaMenuElemets/Mega-Menu-Decoration";
-import MegaMenuLampadaire from "./megaMenuElemets/Mega-Menu-Lampadaire";
+import MegaMenuLamp from './megaMenuElemets/Mega-Menu-Lamp';
+import MegaMenuEclairge from './megaMenuElemets/Mega-Menu-Eclairge';
+import MegaMenuGuirlande from './megaMenuElemets/Mega-Menu-Guirlande';
+import MegaMenuDecoration from './megaMenuElemets/Mega-Menu-Decoration';
+import MegaMenuLampadaire from './megaMenuElemets/Mega-Menu-Lampadaire';
 
 const MegaMenu = () => {
   const [activeDropDown, setActiveDropDown] = useState({
     active: false,
-    dropdownName: "",
+    dropdownName: '',
   });
   //--------------  logic for the search
   // const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -24,7 +27,7 @@ const MegaMenu = () => {
   //   setIsSearchOpen(!isSearchOpen);
   // };
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
   const handleChange = (event: {
     target: { value: React.SetStateAction<string> };
   }) => {
@@ -32,7 +35,7 @@ const MegaMenu = () => {
   };
   const handleSearch = () => {
     // Here you would implement your search logic
-    console.log("Searching for:", searchTerm);
+    console.log('Searching for:', searchTerm);
     // For example, you might:
     // - Make an API call with the searchTerm
     // - Filter data on the client-side
@@ -43,17 +46,17 @@ const MegaMenu = () => {
     <section className="relative hidden h-[100px] bg-[#37464A] md:flex justify-between items-center px-2">
       {/* logo */}
       <Link href="#">
-        <Image src={Logo} alt="Logo" width={150}></Image>
+        <Image src={myLogo} alt="Logo" width={150}></Image>
       </Link>
       {/* menu */}
       <div>
         <ul className="w-full md:flex gap-5 text-sm">
           <li
             onMouseEnter={() =>
-              setActiveDropDown({ active: true, dropdownName: "lamp" })
+              setActiveDropDown({ active: true, dropdownName: 'lamp' })
             }
             onClick={() =>
-              setActiveDropDown({ active: false, dropdownName: "" })
+              setActiveDropDown({ active: false, dropdownName: '' })
             }
           >
             <div className="hover:text-[#F49805] hover:border-b-1 flex items-center gap-2 text-white uppercase">
@@ -63,17 +66,17 @@ const MegaMenu = () => {
 
             {/* drop down */}
             {activeDropDown.active &&
-              activeDropDown.dropdownName === "lamp" && (
+              activeDropDown.dropdownName === 'lamp' && (
                 <MegaMenuLamp onLeave={setActiveDropDown} />
               )}
           </li>
 
           <li
             onMouseEnter={() =>
-              setActiveDropDown({ active: true, dropdownName: "eclairage" })
+              setActiveDropDown({ active: true, dropdownName: 'eclairage' })
             }
             onClick={() =>
-              setActiveDropDown({ active: false, dropdownName: "" })
+              setActiveDropDown({ active: false, dropdownName: '' })
             }
           >
             <div className="hover:text-[#F49805] hover:border-b-1 flex items-center gap-2 text-white uppercase">
@@ -83,17 +86,17 @@ const MegaMenu = () => {
 
             {/* drop down */}
             {activeDropDown.active &&
-              activeDropDown.dropdownName === "eclairage" && (
+              activeDropDown.dropdownName === 'eclairage' && (
                 <MegaMenuEclairge onLeave={setActiveDropDown} />
               )}
           </li>
 
           <li
             onMouseEnter={() =>
-              setActiveDropDown({ active: true, dropdownName: "guirlande" })
+              setActiveDropDown({ active: true, dropdownName: 'guirlande' })
             }
             onClick={() =>
-              setActiveDropDown({ active: false, dropdownName: "" })
+              setActiveDropDown({ active: false, dropdownName: '' })
             }
           >
             <div className="hover:text-[#F49805] hover:border-b-1 flex items-center gap-2 text-white uppercase">
@@ -103,7 +106,7 @@ const MegaMenu = () => {
 
             {/* drop down */}
             {activeDropDown.active &&
-              activeDropDown.dropdownName === "guirlande" && (
+              activeDropDown.dropdownName === 'guirlande' && (
                 <MegaMenuGuirlande onLeave={setActiveDropDown} />
               )}
           </li>
@@ -111,10 +114,10 @@ const MegaMenu = () => {
           <li
             className="hidden lg:flex"
             onMouseEnter={() =>
-              setActiveDropDown({ active: true, dropdownName: "decoration" })
+              setActiveDropDown({ active: true, dropdownName: 'decoration' })
             }
             onClick={() =>
-              setActiveDropDown({ active: false, dropdownName: "" })
+              setActiveDropDown({ active: false, dropdownName: '' })
             }
           >
             <div className="hover:text-[#F49805] hover:border-b-1 flex items-center gap-2 text-white uppercase">
@@ -124,7 +127,7 @@ const MegaMenu = () => {
 
             {/* drop down */}
             {activeDropDown.active &&
-              activeDropDown.dropdownName === "decoration" && (
+              activeDropDown.dropdownName === 'decoration' && (
                 <MegaMenuDecoration onLeave={setActiveDropDown} />
               )}
           </li>
@@ -132,10 +135,10 @@ const MegaMenu = () => {
           <li
             className="hidden lg:flex"
             onMouseEnter={() =>
-              setActiveDropDown({ active: true, dropdownName: "lampadaire" })
+              setActiveDropDown({ active: true, dropdownName: 'lampadaire' })
             }
             onClick={() =>
-              setActiveDropDown({ active: false, dropdownName: "" })
+              setActiveDropDown({ active: false, dropdownName: '' })
             }
           >
             <div className="hover:text-[#F49805] hover:border-b-1 flex items-center gap-2 text-white uppercase">
@@ -145,7 +148,7 @@ const MegaMenu = () => {
 
             {/* drop down */}
             {activeDropDown.active &&
-              activeDropDown.dropdownName === "lampadaire" && (
+              activeDropDown.dropdownName === 'lampadaire' && (
                 <MegaMenuLampadaire onLeave={setActiveDropDown} />
               )}
           </li>
