@@ -42,7 +42,7 @@ const MegaMenu = () => {
   return (
     <section className="relative hidden h-[100px] bg-[#37464A] md:flex justify-between items-center px-2">
       {/* logo */}
-      <Link href="#">
+      <Link href="/">
         <Image src={myLogo} alt="Logo" width={150}></Image>
       </Link>
       {/* menu */}

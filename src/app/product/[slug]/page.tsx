@@ -8,6 +8,7 @@ import ImageGallery from './ImageGallery';
 interface Product extends SanityDocument {
   name: string;
   description: PortableTextBlock[];
+  quantity: number;
   price?: number;
   price_id: string;
   slug: string;
@@ -28,6 +29,7 @@ const PRODUCT_QUERY = groq`
     name,
     "slug": slug.current,
     description[],
+    quantity,
     price,
     price_id,
     images[]{
@@ -95,6 +97,17 @@ const ProductDetails = async ({ params }: ProductPageProps) => {
 
         {/* Product Details Section */}
         <div className="md:w-1/2 flex flex-col">
+          {product.quantity > 0 ? (
+            <div className="text-gray-700 text-sm mb-4 line-clamp-3">
+              <p className="text-red-500 font-bold text-xl uppercase border border-red-500 inline-block px-2 py-1 rounded-xl">
+                In stock: {product.quantity}
+              </p>
+            </div>
+          ) : (
+            <p className="text-red-500 text-xl font-bold mb-2 uppercase">
+              Out of the stok!!!
+            </p>
+          )}
           <h1 className="text-5xl font-extrabold text-gray-900 mb-4 leading-tight">
             {product.name}
           </h1>

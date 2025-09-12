@@ -9,6 +9,7 @@ import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the sa
 interface Product extends SanityDocument {
   name: string;
   description: PortableTextBlock[];
+  quantity: number;
   price: number;
   price_id: string;
   slug: string; // The slug will be a string (slug.current) from the query
@@ -29,6 +30,7 @@ const PRODUCTS_QUERY = groq`
     name,
     "slug": slug.current, // Get the string value of the slug
     description[],
+    quantity,
     price,
     price_id,
     images[]{
@@ -95,11 +97,17 @@ async function ProductList() {
                 {product.name}
               </h2>
 
-              {/* {product.description && (
+              {product.quantity > 0 ? (
                 <div className="text-gray-700 text-sm mb-4 line-clamp-3">
-                  <PortableText value={product.description} />
+                  <p className="text-red-500 font-bold text-xl uppercase border border-red-500 inline-block px-2 py-1 rounded-xl">
+                    In stock: {product.quantity}
+                  </p>
                 </div>
-              )} */}
+              ) : (
+                <p className="text-red-800 text-lg font-normal mb-2">
+                  Out of the stok!!!
+                </p>
+              )}
 
               {product.price !== undefined && (
                 <p className="text-lg font-bold text-gray-900 mb-4">
