@@ -5,9 +5,9 @@ import Image from 'next/image';
 import CartSidebar from '../ui/Button/CartSidebar';
 import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 
-import { FaTwitter } from 'react-icons/fa';
+import { FaTiktok } from 'react-icons/fa';
+import { CiYoutube } from 'react-icons/ci';
 import { FaFacebookF } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import { FaRegUser } from 'react-icons/fa';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -39,11 +39,11 @@ const Header = () => {
           <ul className="md:flex hidden gap-4 text-[15px]">
             <li>
               <Link
-                href="https://x.com/"
+                href="https://www.tiktok.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaTwitter className="hover:text-[#F49805]" />
+                <FaTiktok className="hover:text-[#F49805]" />
               </Link>
             </li>
             <li>
@@ -57,11 +57,11 @@ const Header = () => {
             </li>
             <li>
               <Link
-                href="https://www.instagram.com/"
+                href="https://www.youtube.com/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FaInstagram className="hover:text-[#F49805]" />
+                <CiYoutube className="hover:text-[#F49805]" />
               </Link>
             </li>
             <li>

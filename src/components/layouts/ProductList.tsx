@@ -77,19 +77,23 @@ async function ProductList() {
           >
             {/* Product Image */}
             {product.images && product.images.length > 0 && (
-              <div className="relative w-full h-48 -z-10">
-                {' '}
+              <div className="relative w-full h-48">
                 {/* Fixed height for images */}
-                <Image
-                  alt={product.images[0].alt || product.name || 'Product Image'}
-                  src={
-                    urlFor(product.images[0]).url() || '/placeholder-image.jpg'
-                  }
-                  fill
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  style={{ objectFit: 'cover' }}
-                  className="rounded-t-lg"
-                />
+                <Link href={`/product/${product.slug}`}>
+                  <Image
+                    alt={
+                      product.images[0].alt || product.name || 'Product Image'
+                    }
+                    src={
+                      urlFor(product.images[0]).url() ||
+                      '/placeholder-image.jpg'
+                    }
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: 'cover' }}
+                    className="rounded-t-lg"
+                  />
+                </Link>
               </div>
             )}
             <div className="p-4 flex-grow flex flex-col justify-between">

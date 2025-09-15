@@ -14,6 +14,9 @@ import MobileMenuConnextion from './Mobile-Menu-Connextion';
 import MobileMenuAccordeonLampesolar from './Mobile-Menu-Accordeon-Lampesolar';
 import MobileMenuAccordeonLenergie from './Mobile-Menu-Accordeon-Lenergie';
 
+import { FaTiktok } from 'react-icons/fa';
+import { CiYoutube } from 'react-icons/ci';
+
 import { FaTwitter } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa';
 import { FaInstagram } from 'react-icons/fa';
@@ -181,11 +184,11 @@ const HeaderMobile = () => {
               <ul className="flex justify-between px-5 pt-5 pb-5 text-[20px] text-white">
                 <li className="bg-[#349BF1] p-2 rounded-3xl">
                   <Link
-                    href="https://x.com/"
+                    href="https://www.tiktok.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FaTwitter />
+                    <FaTiktok />
                   </Link>
                 </li>
                 <li className="bg-[#44599B] p-2 rounded-3xl">
@@ -199,11 +202,11 @@ const HeaderMobile = () => {
                 </li>
                 <li className="bg-[#D63A95] p-2 rounded-3xl">
                   <Link
-                    href="https://www.instagram.com/"
+                    href="https://www.youtube.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <FaInstagram />
+                    <CiYoutube />
                   </Link>
                 </li>
                 <li className="bg-[#44599B] p-2 rounded-3xl">
