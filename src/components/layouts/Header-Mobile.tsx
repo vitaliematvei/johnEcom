@@ -17,9 +17,7 @@ import MobileMenuAccordeonLenergie from './Mobile-Menu-Accordeon-Lenergie';
 import { FaTiktok } from 'react-icons/fa';
 import { CiYoutube } from 'react-icons/ci';
 
-import { FaTwitter } from 'react-icons/fa';
 import { FaFacebookF } from 'react-icons/fa';
-import { FaInstagram } from 'react-icons/fa';
 import { AiOutlineMail } from 'react-icons/ai';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { IoIosMenu } from 'react-icons/io';
