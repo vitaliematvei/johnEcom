@@ -65,7 +65,7 @@ const HeaderMobile = () => {
   };
 
   return (
-    <div className=" md:hidden fixed w-full items-center h-[40px] bg-[#213236] text-black text-[12px] uppercase">
+    <div className=" md:hidden fixed w-full items-center h-[40px] bg-[#213236] text-black text-[12px] uppercase z-10">
       <nav className="w-[100%] mx-auto md:flex justify-between ">
         <div className="flex justify-between text-white items-center px-2 mb-1">
           {/* hamburgeer button */}
