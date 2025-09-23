@@ -68,7 +68,7 @@ async function ProductList() {
 
   console.log('Fetched products:', products);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 p-4">
       {products.length > 0 ? (
         products.map((product) => (
           <div
@@ -97,31 +97,31 @@ async function ProductList() {
               </div>
             )}
             <div className="p-4 flex-grow flex flex-col justify-between">
-              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              <h2 className="text-xs font-semibold text-gray-800 mb-2">
                 {product.name}
               </h2>
 
               {product.quantity > 0 ? (
-                <div className="text-gray-700 text-sm mb-4 line-clamp-3">
-                  <p className="text-red-500 font-bold text-xl uppercase border border-red-500 inline-block px-2 py-1 rounded-xl">
+                <div className="text-gray-700 text-xs mb-2 line-clamp-3">
+                  <p className="text-red-500 font-bold text-xs uppercase border border-red-500 inline-block px-2 py-1 rounded-xl">
                     In stock: {product.quantity}
                   </p>
                 </div>
               ) : (
-                <p className="text-red-800 text-lg font-normal mb-2">
+                <p className="text-red-800 text-xs font-normal mb-2">
                   Out of the stok!!!
                 </p>
               )}
 
               {product.price !== undefined && (
-                <p className="text-lg font-bold text-gray-900 mb-4">
+                <p className="text-sm font-bold text-gray-900 mb-4">
                   Price: ${(product.price / 100).toFixed(2)}
                 </p>
               )}
 
-              <div className="flex items-center justify-between mt-auto">
+              <div className="flex items-center justify-between mt-auto mx-auto">
                 {/* <AddToCartBtn product={product} /> */}
-                <AddToCartBtn
+                {/* <AddToCartBtn
                   price_id={product.price_id}
                   id={product._id}
                   name={product.name}
@@ -139,11 +139,11 @@ async function ProductList() {
                   }
                   price={product.price ?? 0}
                   currency="CAD"
-                />
+                /> */}
 
                 <Link
                   href={`/product/${product.slug}`}
-                  className="text-blue-600 hover:underline px-4 py-2 rounded-md border border-blue-600 hover:bg-blue-50 transition-colors"
+                  className="text-xs text-blue-600 hover:underline px-4 py-2 rounded-md border border-blue-600 hover:bg-blue-50 transition-colors"
                 >
                   Details
                 </Link>
@@ -152,7 +152,7 @@ async function ProductList() {
           </div>
         ))
       ) : (
-        <p className="col-span-full text-center text-gray-600 p-8">
+        <p className="text-xs col-span-full text-center text-gray-600 p-8">
           No products found.
         </p>
       )}
