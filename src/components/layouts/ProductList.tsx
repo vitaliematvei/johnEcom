@@ -4,7 +4,7 @@ import { client, urlFor } from '@/sanity/client';
 import { groq, type SanityDocument } from 'next-sanity';
 import Image from 'next/image';
 import Link from 'next/link';
-import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
+// import AddToCartBtn from './AddToCartBtn'; // Assuming AddToCartBtn is in the same directory
 
 interface Product extends SanityDocument {
   name: string;
@@ -52,19 +52,19 @@ async function ProductList() {
     { next: { revalidate: 30 } }
   );
 
-  const getPlainText = (blocks: PortableTextBlock[]): string => {
-    if (!blocks || blocks.length === 0) {
-      return '';
-    }
-    return blocks
-      .map((block) => {
-        if (block._type !== 'block' || !block.children) {
-          return '';
-        }
-        return block.children.map((span) => span.text).join('');
-      })
-      .join('\n');
-  };
+  // const getPlainText = (blocks: PortableTextBlock[]): string => {
+  //   if (!blocks || blocks.length === 0) {
+  //     return '';
+  //   }
+  //   return blocks
+  //     .map((block) => {
+  //       if (block._type !== 'block' || !block.children) {
+  //         return '';
+  //       }
+  //       return block.children.map((span) => span.text).join('');
+  //     })
+  //     .join('\n');
+  // };
 
   console.log('Fetched products:', products);
   return (
