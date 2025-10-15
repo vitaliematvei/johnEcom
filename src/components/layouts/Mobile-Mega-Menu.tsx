@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { IoIosArrowBack } from 'react-icons/io';
 import { IoIosArrowForward } from 'react-icons/io';
 import MobileMegaMenuLamp from './mobileMegaMenuElements/Mobile-Mega-Menu-Lamp';
-import MobileMegaMenuEclairge from './mobileMegaMenuElements/Mobile-Mega-Menu-Eclairge';
+// import MobileMegaMenuEclairge from './mobileMegaMenuElements/Mobile-Mega-Menu-Eclairge';
 import MobileMegaMenuGuirlande from './mobileMegaMenuElements/Mobile-Mega-Menu-Guirlande';
 import MobileMegaMenuDecoration from './mobileMegaMenuElements/Mobile-Mega-Menu-Decoration';
 import MobileMegaMenuLampadaire from './mobileMegaMenuElements/Mobile-Mega-Menu-Lampadaire';
@@ -47,7 +47,7 @@ const MobileMegaMenu = () => {
           {isLampOpen && <MobileMegaMenuLamp />}
         </li>
 
-        <li>
+        {/* <li>
           <div
             className="text-black flex justify-between  uppercase text-xl border-b-1"
             onClick={() => setIsEclairgeOpen((prev) => !prev)}
@@ -71,9 +71,9 @@ const MobileMegaMenu = () => {
               <IoIosArrowBack />
             </div>
           </div>
-          {/* drop down */}
+
           {isEclairgeOpen && <MobileMegaMenuEclairge />}
-        </li>
+        </li> */}
 
         <li>
           <div

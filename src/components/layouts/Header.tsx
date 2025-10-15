@@ -78,7 +78,7 @@ const Header = () => {
 
         {/* menu */}
         <div>
-          <ul className="w-full md:flex  gap-4">
+          <ul className="w-full md:flex gap-18 text-md">
             <li className="hover:text-[#F49805] ">
               <Link href="#">Chat</Link>
             </li>
@@ -88,7 +88,7 @@ const Header = () => {
             <li className="hover:text-[#F49805]">
               <Link href="#">Suivi Commande</Link>
             </li>
-            <li className="hover:text-[#F49805]">
+            {/* <li className="hover:text-[#F49805]">
               <Link href="#">Guide</Link>
             </li>
             <li className="hover:text-[#F49805] ">
@@ -99,7 +99,7 @@ const Header = () => {
             </li>
             <li className="hover:text-[#F49805] hidden lg:flex">
               <Link href="#">Devenir Ambassadeur</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 

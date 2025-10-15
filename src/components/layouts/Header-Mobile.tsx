@@ -165,7 +165,7 @@ const HeaderMobile = () => {
             <li className="hover:text-[#F49805] py-2">
               <Link href="#">Suivi Commande</Link>
             </li>
-            <li className="hover:text-[#F49805] py-2">
+            {/* <li className="hover:text-[#F49805] py-2">
               <Link href="#">Guide</Link>
             </li>
             <li className="hover:text-[#F49805] py-2">
@@ -176,9 +176,9 @@ const HeaderMobile = () => {
             </li>
             <li className="hover:text-[#F49805] py-2">
               <Link href="#">Devenir Ambassadeur</Link>
-            </li>
+            </li> */}
             <li>
-              ` {/* socials */}`{' '}
+              {/* socials */}
               <ul className="flex justify-between px-5 pt-5 pb-5 text-[20px] text-white">
                 <li className="bg-[#349BF1] p-2 rounded-3xl">
                   <Link

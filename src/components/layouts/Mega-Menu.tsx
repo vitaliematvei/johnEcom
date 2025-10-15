@@ -8,7 +8,7 @@ import { IoIosArrowDown } from 'react-icons/io';
 import myLogo from '../../../public/assets/images/LogoFacutDeMine.png';
 
 import MegaMenuLamp from './megaMenuElemets/Mega-Menu-Lamp';
-import MegaMenuEclairge from './megaMenuElemets/Mega-Menu-Eclairge';
+// import MegaMenuEclairge from './megaMenuElemets/Mega-Menu-Eclairge';
 import MegaMenuGuirlande from './megaMenuElemets/Mega-Menu-Guirlande';
 import MegaMenuDecoration from './megaMenuElemets/Mega-Menu-Decoration';
 import MegaMenuLampadaire from './megaMenuElemets/Mega-Menu-Lampadaire';
@@ -40,7 +40,7 @@ const MegaMenu = () => {
   };
 
   return (
-    <section className="relative hidden h-[100px] bg-[#37464A] md:flex justify-between items-center px-2">
+    <section className="z-10 relative hidden h-[100px] bg-[#37464A] md:flex justify-between items-center px-2">
       {/* logo */}
       <Link href="/">
         <Image src={myLogo} alt="Logo" width={150}></Image>
@@ -68,7 +68,7 @@ const MegaMenu = () => {
               )}
           </li>
 
-          <li
+          {/* <li
             onMouseEnter={() =>
               setActiveDropDown({ active: true, dropdownName: 'eclairage' })
             }
@@ -81,12 +81,11 @@ const MegaMenu = () => {
               <IoIosArrowDown />
             </div>
 
-            {/* drop down */}
             {activeDropDown.active &&
               activeDropDown.dropdownName === 'eclairage' && (
                 <MegaMenuEclairge onLeave={setActiveDropDown} />
               )}
-          </li>
+          </li> */}
 
           <li
             onMouseEnter={() =>

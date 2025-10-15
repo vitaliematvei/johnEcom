@@ -68,16 +68,16 @@ async function ProductList() {
 
   console.log('Fetched products:', products);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 p-4 ">
       {products.length > 0 ? (
         products.map((product) => (
           <div
             key={product._id}
-            className="product-card border rounded-lg shadow-md overflow-hidden flex flex-col"
+            className="bg-white product-card border rounded-lg shadow-md overflow-hidden flex flex-col"
           >
             {/* Product Image */}
             {product.images && product.images.length > 0 && (
-              <div className="relative w-full h-48">
+              <div className="relative w-full h-48 ">
                 {/* Fixed height for images */}
                 <Link href={`/product/${product.slug}`}>
                   <Image
