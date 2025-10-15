@@ -11,7 +11,7 @@ import MobileMegaMenuLampadaire from './mobileMegaMenuElements/Mobile-Mega-Menu-
 const MobileMegaMenu = () => {
   // Separate state for each dropdown
   const [isLampOpen, setIsLampOpen] = useState<boolean>(false);
-  const [isEclairgeOpen, setIsEclairgeOpen] = useState<boolean>(false);
+  // const [isEclairgeOpen, setIsEclairgeOpen] = useState<boolean>(false);
   const [isGuirlandeOpen, setIsGuirlandeOpen] = useState<boolean>(false);
   const [isDecorationOpen, setIsDecorationOpen] = useState<boolean>(false);
   const [isLampadaireOpen, setIsLampadaireOpen] = useState<boolean>(false);
